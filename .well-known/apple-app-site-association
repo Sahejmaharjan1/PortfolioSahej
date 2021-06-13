@@ -2,7 +2,7 @@
     applinks: {
       details: [
         {
-          appIDs: ["3V6G7ULMAP.com.axmazoncognito.us-east-1.auth.bottle-karobar"],
+          appIDs: ["3V6G7ULMAP.com.amazoncognito.us-east-1.auth.bottle-karobar"],
           paths: ["*"],
         },
       ],
