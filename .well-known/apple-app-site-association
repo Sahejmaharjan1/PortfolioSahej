@@ -1,10 +1,11 @@
 {
-    applinks: {
-      details: [
-        {
-          appIDs: ["3V6G7ULMAP.com.amazoncognito.us-east-1.auth.bottle-karobar"],
-          paths: ["*"],
-        },
-      ],
-    },
-  }
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "3V6G7ULMAP.com.amazoncognito.us-east-1.auth.bottle-karobar",
+                "paths": [ "*"]
+            }
+        ]
+    }
+}
