@@ -1,0 +1,247 @@
+<p>Hey folks,</p>
+
+<p>This one is about operations automation — not AI agents, not dashboards, not a platform rebuild. Just two workflows that were quietly eating hours every week at a 100+ property vacation-rental portfolio, and how we wired them up with n8n so the ops team could stop doing the same manual work every morning.</p>
+
+<p>One workflow finds money sitting between reservations. The other keeps pool heaters on when guests arrive and off when they leave — across four cities, two equipment vendors, and a spreadsheet nobody fully trusted. Both problems sound small until you multiply them by a hundred properties.</p>
+
+<p>Here's what we built, what broke along the way, and the pattern that held up across both.</p>
+
+<h2>Two problems, same shape</h2>
+
+<p>At Heirloom, the pain showed up in two places that looked unrelated but shared the same failure mode: <strong>too many systems, too much judgment, not enough consistency.</strong></p>
+
+<p><strong>Gap nights.</strong> When two confirmed reservations leave a one- or two-night hole on the calendar, that's lost revenue. Someone has to spot the gap, price an offer, pick which adjacent guest to contact, and hand the ops team a ready-to-send message. Doing that by hand across a large portfolio means most gaps never get touched.</p>
+
+<p><strong>Pool heaters.</strong> Over a hundred properties across New Orleans, Savannah, Nashville, and Austin run Hayward OmniLogic or Jandy iAqualink systems. Heater rules depend on season, pool size, heater type, guest check-in status, and calendar blocks in Guesty — Turnover, Early Check-in, Maintenance, and a dozen variants recorded inconsistently by different reps. The team tracked all of this in Google Sheets and cross-checked vendor portals. The sheet drifted from reality. Heaters ran when they shouldn't. Guests arrived to cold pools.</p>
+
+<p>Neither problem needed a new product. Both needed a reliable loop: pull state from the systems of record, apply the business rules, write the result somewhere humans can audit, and act.</p>
+
+<figure data-svg-diagram="" class="svg-diagram" contenteditable="false">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" fill="none">
+  <rect width="760" height="420" rx="12" fill="#0a0a0a"/>
+  <text x="380" y="36" text-anchor="middle" fill="#888" font-family="system-ui,sans-serif" font-size="13" letter-spacing="0.08em">TWO PROBLEMS · SAME LOOP</text>
+
+  <rect x="40" y="70" width="320" height="140" rx="8" fill="#141414" stroke="#2a2a2a"/>
+  <text x="200" y="100" text-anchor="middle" fill="#e8e8e8" font-family="system-ui,sans-serif" font-size="15" font-weight="600">Gap Night Upsell</text>
+  <text x="200" y="128" text-anchor="middle" fill="#888" font-family="system-ui,sans-serif" font-size="12">Unbooked nights between reservations</text>
+  <text x="200" y="152" text-anchor="middle" fill="#666" font-family="system-ui,sans-serif" font-size="11">Guesty · Redis · Google Sheets</text>
+  <text x="200" y="176" text-anchor="middle" fill="#4ade80" font-family="system-ui,sans-serif" font-size="11">Output: priced offer + Guesty task</text>
+
+  <rect x="400" y="70" width="320" height="140" rx="8" fill="#141414" stroke="#2a2a2a"/>
+  <text x="560" y="100" text-anchor="middle" fill="#e8e8e8" font-family="system-ui,sans-serif" font-size="15" font-weight="600">Pool Heater Management</text>
+  <text x="560" y="128" text-anchor="middle" fill="#888" font-family="system-ui,sans-serif" font-size="12">100+ properties · 4 cities · 2 vendors</text>
+  <text x="560" y="152" text-anchor="middle" fill="#666" font-family="system-ui,sans-serif" font-size="11">Hayward · iAqualink · Guesty · Sheets</text>
+  <text x="560" y="176" text-anchor="middle" fill="#4ade80" font-family="system-ui,sans-serif" font-size="11">Output: heater toggles + sheet sync</text>
+
+  <rect x="120" y="250" width="520" height="130" rx="8" fill="#1a1a1a" stroke="#333"/>
+  <text x="380" y="282" text-anchor="middle" fill="#e8e8e8" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Shared pattern</text>
+  <text x="380" y="310" text-anchor="middle" fill="#888" font-family="system-ui,sans-serif" font-size="12">Pull state → apply rules → audit trail → act</text>
+  <text x="380" y="338" text-anchor="middle" fill="#666" font-family="system-ui,sans-serif" font-size="11">n8n orchestrates · business logic lives in one place · humans keep a readable log</text>
+  <text x="380" y="362" text-anchor="middle" fill="#555" font-family="system-ui,sans-serif" font-size="10">Neither workflow needed a new app — both needed a reliable daily loop</text>
+</svg>
+</figure>
+<p><em>Two unrelated ops problems, one automation shape: pull state, apply rules, leave an audit trail, act.</em></p>
+
+<h2>Why n8n</h2>
+
+<p>We had options. A cron job in a repo. A one-off Lambda. A full internal tool. n8n won for a specific reason: <strong>these workflows are integration-heavy, not compute-heavy.</strong> They fan out across Guesty, Google Sheets, Redis, Hayward, and iAqualink. They need retries, branching, and a visual graph that ops and engineering can both read. n8n is built for exactly that — glue code with a UI, scheduled triggers, and Code nodes when the logic gets hairy.</p>
+
+<p>The split we landed on: <strong>n8n orchestrates, a service computes when the logic outgrows a workflow.</strong> Gap night stayed entirely in n8n. Pool heaters got a companion FastAPI service because the rules engine and multi-vendor API coordination were too much to maintain inside Code nodes.</p>
+
+<h2>Gap night: finding money between reservations</h2>
+
+<p>The gap-night workflow runs on a daily cron at 7 AM. Every morning it asks one question across the portfolio: <em>did any new confirmed reservations create a one- or two-night hole we can sell?</em></p>
+
+<p>The flow is linear once you see it:</p>
+
+<ol>
+<li>Authenticate to Guesty (token cached in Redis so we're not re-OAuthing on every node)</li>
+<li>Fetch reservations confirmed in the last 24 hours to discover which listings changed</li>
+<li>Pull all confirmed reservations for those listings over the next 30 days</li>
+<li>Walk consecutive bookings per listing and flag 1-night and 2-night gaps</li>
+<li>Fetch calendar pricing for each gap date</li>
+<li>Calculate the offer price</li>
+<li>Pick which adjacent guest gets the offer</li>
+<li>Log everything to Google Sheets</li>
+<li>Create a Guesty task for the ops team with the full breakdown, email template, and call script</li>
+</ol>
+
+<figure data-svg-diagram="" class="svg-diagram" contenteditable="false">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" fill="none">
+  <rect width="760" height="420" rx="12" fill="#0a0a0a"/>
+  <text x="380" y="36" text-anchor="middle" fill="#888" font-family="system-ui,sans-serif" font-size="13" letter-spacing="0.08em">GAP NIGHT · DAILY 7 AM</text>
+
+  <rect x="30" y="70" width="110" height="50" rx="6" fill="#1e3a2f" stroke="#4ade80"/>
+  <text x="85" y="100" text-anchor="middle" fill="#4ade80" font-family="monospace" font-size="11">CRON 7AM</text>
+
+  <path d="M140 95 H170" stroke="#444" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="170" y="70" width="120" height="50" rx="6" fill="#141414" stroke="#333"/>
+  <text x="230" y="92" text-anchor="middle" fill="#ccc" font-family="monospace" font-size="10">Guesty OAuth</text>
+  <text x="230" y="108" text-anchor="middle" fill="#666" font-family="monospace" font-size="9">Redis cache</text>
+
+  <path d="M290 95 H320" stroke="#444" stroke-width="2"/>
+  <rect x="320" y="70" width="130" height="50" rx="6" fill="#141414" stroke="#333"/>
+  <text x="385" y="92" text-anchor="middle" fill="#ccc" font-family="monospace" font-size="10">Find gaps</text>
+  <text x="385" y="108" text-anchor="middle" fill="#666" font-family="monospace" font-size="9">1-night · 2-night</text>
+
+  <path d="M450 95 H480" stroke="#444" stroke-width="2"/>
+  <rect x="480" y="70" width="130" height="50" rx="6" fill="#141414" stroke="#333"/>
+  <text x="545" y="92" text-anchor="middle" fill="#ccc" font-family="monospace" font-size="10">Price offer</text>
+  <text x="545" y="108" text-anchor="middle" fill="#666" font-family="monospace" font-size="9">calendar → discount</text>
+
+  <path d="M610 95 H640" stroke="#444" stroke-width="2"/>
+  <rect x="640" y="70" width="90" height="50" rx="6" fill="#1e3a2f" stroke="#4ade80"/>
+  <text x="685" y="92" text-anchor="middle" fill="#4ade80" font-family="monospace" font-size="10">Guesty</text>
+  <text x="685" y="108" text-anchor="middle" fill="#4ade80" font-family="monospace" font-size="9">task</text>
+
+  <rect x="80" y="170" width="600" height="200" rx="8" fill="#141414" stroke="#2a2a2a"/>
+  <text x="380" y="200" text-anchor="middle" fill="#888" font-family="system-ui,sans-serif" font-size="12" letter-spacing="0.06em">PRICING PIPELINE</text>
+
+  <text x="120" y="240" fill="#666" font-family="monospace" font-size="11">Calendar price</text>
+  <text x="250" y="240" fill="#444" font-family="monospace" font-size="11">→</text>
+  <text x="280" y="240" fill="#666" font-family="monospace" font-size="11">Listed rate</text>
+  <text x="400" y="240" fill="#444" font-family="monospace" font-size="11">→</text>
+  <text x="430" y="240" fill="#666" font-family="monospace" font-size="11">Normalized</text>
+  <text x="550" y="240" fill="#444" font-family="monospace" font-size="11">→</text>
+  <text x="580" y="240" fill="#4ade80" font-family="monospace" font-size="11">Final offer</text>
+
+  <text x="120" y="275" fill="#555" font-family="monospace" font-size="10">1-night gaps: listed rate ÷ 1.7 (strip single-night premium)</text>
+  <text x="120" y="300" fill="#555" font-family="monospace" font-size="10">Discount by bedroom count · day of week · days until gap</text>
+  <text x="120" y="325" fill="#555" font-family="monospace" font-size="10">Floor: bedrooms × $50 · min flat rates per bedroom tier</text>
+  <text x="120" y="350" fill="#555" font-family="monospace" font-size="10">Event multipliers: NYE 1.5× · July 4 1.4× · Thanksgiving 1.35×</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6" fill="#444"/>
+    </marker>
+  </defs>
+</svg>
+</figure>
+<p><em>Every morning: find gaps, price them, pick a guest, hand the ops team a ready-to-act task.</em></p>
+
+<h3>The pricing engine</h3>
+
+<p>The pricing logic is where most of the business knowledge lives, and it all runs inside n8n Code nodes. The pipeline has six steps:</p>
+
+<p><strong>Listed rate</strong> comes from the Guesty Calendar API for the gap date, falling back to the listing's base price, then to a $200 default.</p>
+
+<p><strong>Normalization</strong> strips the single-night premium. Most properties charge roughly 70% more for one-night stays to cover turnover. For 1-night gaps, we divide the listed rate by 1.7. Two-night gaps keep the listed rate as-is.</p>
+
+<p><strong>Floor</strong> ensures the normalized rate never drops below <code>bedrooms × $50</code>.</p>
+
+<p><strong>Discount</strong> depends on three inputs: bedroom count, day of the week, and how many days until the gap. A Monday 14 days out on a 2-bedroom gets 75% off. A Saturday 64 days out gets only 10% off. The further out, the less aggressive the offer.</p>
+
+<p><strong>Minimum flat rate</strong> caps how low we'll go — $50 for a 1BR, $80 for a 2BR, up to $200 for a 5BR — regardless of what the discount math says.</p>
+
+<p><strong>Event multiplier</strong> bumps the price during high-demand windows: New Year's Eve at 1.5×, Independence Day at 1.4×, Memorial Day and Labor Day at 1.3×.</p>
+
+<p>A Friday gap 14 days out on a 2-bedroom with a $1,400 calendar price lands around $330. A Christmas Eve gap on the same property might land at $132 after the holiday multiplier kicks in. The ops team doesn't do any of that math. The task arrives with the full breakdown.</p>
+
+<h3>Who gets the offer</h3>
+
+<p>Pricing is only half the problem. The other half is <em>who do we ask?</em> Every gap has two adjacent reservations — the guest checking out and the guest checking in. The selection logic runs in priority order:</p>
+
+<ol>
+<li><strong>Platform priority:</strong> Manual/Website bookings beat VRBO, which beats Booking.com, which beats Airbnb. Direct guests are easier to upsell.</li>
+<li><strong>The 50% rule:</strong> the offer can't exceed 50% of the guest's existing reservation total. If both adjacent guests fail this check, the gap is skipped entirely.</li>
+<li><strong>Tiebreaker:</strong> when both guests pass, the higher-paying reservation wins.</li>
+</ol>
+
+<p>The Guesty task that lands in the ops queue includes everything: the pricing breakdown, why this guest was chosen, a ready-to-send email ("Would you like to extend your stay?" or "Would you like to arrive early?"), and a call script for offers over $300. Tags on the task flag whether auto-send is eligible or a call is required.</p>
+
+<h2>Pool heaters: orchestration vs. computation</h2>
+
+<p>Pool heater management is the harder problem, and it's the one that taught us when n8n should stop and a service should start.</p>
+
+<p>The ops team had a detailed SOP: heat pools to 85°F on guest arrival day in non-summer months, keep electric heaters running continuously, pre-heat large pools (&gt;15,000 gallons) the night before check-in, turn everything off after checkout, handle summer differently, and apply property-specific overrides for indoor pools and spa-only configurations. Calendar blocks in Guesty — Turnover, Early Check-in, Last-minute, Maintenance, Repair — could override the defaults.</p>
+
+<p>That logic isn't hard to describe. It's hard to run reliably across Hayward's XML API, iAqualink's JSON API, and Guesty's booking data — where system IDs change per installation, equipment status lives in different formats, and the spreadsheet the team trusted didn't match what the vendor portals showed.</p>
+
+<figure data-svg-diagram="" class="svg-diagram" contenteditable="false">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" fill="none">
+  <rect width="760" height="420" rx="12" fill="#0a0a0a"/>
+  <text x="380" y="36" text-anchor="middle" fill="#888" font-family="system-ui,sans-serif" font-size="13" letter-spacing="0.08em">POOL HEATER · ORCHESTRATION + SERVICE</text>
+
+  <rect x="280" y="60" width="200" height="56" rx="8" fill="#1e2a3a" stroke="#60a5fa"/>
+  <text x="380" y="84" text-anchor="middle" fill="#60a5fa" font-family="system-ui,sans-serif" font-size="14" font-weight="600">n8n workflow</text>
+  <text x="380" y="104" text-anchor="middle" fill="#888" font-family="monospace" font-size="10">orchestrator · sheets · batching</text>
+
+  <path d="M380 116 V150" stroke="#444" stroke-width="2"/>
+  <rect x="240" y="150" width="280" height="64" rx="8" fill="#1a2e1a" stroke="#4ade80"/>
+  <text x="380" y="176" text-anchor="middle" fill="#4ade80" font-family="system-ui,sans-serif" font-size="13" font-weight="600">PHMDS · FastAPI on Cloud Run</text>
+  <text x="380" y="198" text-anchor="middle" fill="#888" font-family="monospace" font-size="10">rules engine · multi-vendor API coordination</text>
+
+  <path d="M280 214 L160 260" stroke="#444" stroke-width="1.5"/>
+  <path d="M380 214 V260" stroke="#444" stroke-width="1.5"/>
+  <path d="M480 214 L600 260" stroke="#444" stroke-width="1.5"/>
+
+  <rect x="60" y="260" width="160" height="56" rx="6" fill="#141414" stroke="#333"/>
+  <text x="140" y="284" text-anchor="middle" fill="#ccc" font-family="monospace" font-size="11">Hayward API</text>
+  <text x="140" y="302" text-anchor="middle" fill="#666" font-family="monospace" font-size="9">XML · per-install IDs</text>
+
+  <rect x="300" y="260" width="160" height="56" rx="6" fill="#141414" stroke="#333"/>
+  <text x="380" y="284" text-anchor="middle" fill="#ccc" font-family="monospace" font-size="11">Guesty API</text>
+  <text x="380" y="302" text-anchor="middle" fill="#666" font-family="monospace" font-size="9">occupancy · calendar blocks</text>
+
+  <rect x="540" y="260" width="160" height="56" rx="6" fill="#141414" stroke="#333"/>
+  <text x="620" y="284" text-anchor="middle" fill="#ccc" font-family="monospace" font-size="11">iAqualink API</text>
+  <text x="620" y="302" text-anchor="middle" fill="#666" font-family="monospace" font-size="9">JSON · device status</text>
+
+  <rect x="120" y="340" width="520" height="56" rx="8" fill="#141414" stroke="#2a2a2a"/>
+  <text x="380" y="364" text-anchor="middle" fill="#888" font-family="system-ui,sans-serif" font-size="11">Sheets = audit trail · n8n loops properties · PHMDS applies rules · fresh telemetry written back</text>
+  <text x="380" y="384" text-anchor="middle" fill="#555" font-family="monospace" font-size="10">auth happens once in the service · n8n never talks to vendor APIs directly</text>
+</svg>
+</figure>
+<p><em>n8n orchestrates the loop. PHMDS owns the rules and the vendor APIs. Google Sheets stays the human-readable audit trail.</em></p>
+
+<h3>What PHMDS does</h3>
+
+<p>We built the Pool Heater Management Data Service — a FastAPI app on GCP Cloud Run — to be the single place that understands all three systems. A call to <code>/api/v1/hayward/info</code> triggers dozens of downstream requests: pull the property list, parse the config file to map system IDs (they're different per installation), fetch real-time telemetry, look up the property in Guesty, check today's availability, and return one unified row. Same shape for iAqualink, different API format.</p>
+
+<p>The rules engines live here, not in n8n. Summer vs. non-summer. Large pool pre-heat the night before. Electric heaters that stay on continuously. Guest in-house vs. checkout day vs. arrival day. Calendar block overrides. Property-specific exceptions — like the indoor pool at 4417 Dryades that runs at 80°F October through April for humidity control, or the Ashlyn properties in Savannah where spas stay at 104°F and pools go off November through February.</p>
+
+<p>n8n never calls Hayward or iAqualink directly. It reads the Google Sheets, calls PHMDS to populate them if empty, loops each property through <code>apply-rules</code>, waits for rate limits, re-fetches live telemetry, and batch-writes the updated rows back. The sheet is the audit trail the ops team already knew how to read.</p>
+
+<h3>What we learned the hard way</h3>
+
+<p>The sheet was stale. That was the first bug report — heaters showing "On" in the spreadsheet while iAqualink showed everything off. The automation's whole value proposition is that the sheet reflects reality after every run, so we made the write-back step non-optional: always re-fetch, always sync.</p>
+
+<p>Calendar block labels are inconsistent. Guesty captures Turnover and Last-minute blocks, but different reps record them differently. The rules engine does fuzzy matching on block type strings, but we still need ongoing input from the field team to keep labels clean. Automation doesn't fix bad data entry — it just applies rules consistently to whatever data exists.</p>
+
+<p>Simulation mode is the default. PHMDS ships with <code>SIMULATE_RULES_APPLICATION = True</code> so we can run the full loop — rules, API calls, sheet sync — without actually toggling heaters in production. Flipping that flag is deliberate, not accidental.</p>
+
+<h2>What a morning looks like now</h2>
+
+<p>Two concrete pictures.</p>
+
+<p><strong>Gap night, 7:04 AM.</strong> A new 2-night reservation on a 3-bedroom in Savannah confirmed yesterday. It created a 1-night gap on the following Friday. The workflow fetches the calendar price ($800), normalizes it to $471, applies a 50% Saturday discount (10 days out), and lands on a $236 offer. The guest checking out booked direct — platform priority picks them over the Airbnb guest on the other side. The 50% rule passes. A Guesty task appears: "Upsell – 1-night Gap (Friday, March 14)" with the full pricing breakdown, email template, and a call-required tag because the offer exceeds $300. The ops team acts on it before their first coffee is finished.</p>
+
+<p><strong>Pool heater, manual run.</strong> PHMDS health check passes. n8n reads 47 rows from the Hayward sheet and 12 from the iAqualink sheet. For each property, it posts to <code>apply-rules</code>. A large pool in Nashville with a guest arriving tomorrow gets the heater turned on tonight — night-before pre-heat rule. An electric pool in Austin stays at 80°F regardless. A property with a Maintenance block in Guesty gets heaters forced off. After both loops complete, n8n waits a minute for Guesty rate limits, re-fetches live telemetry from both vendors, and writes 59 updated rows back to the sheets. The ops team opens the sheet and sees current state, not yesterday's guess.</p>
+
+<h2>Takeaways</h2>
+
+<p>A few things I'd tell past-me before starting either of these.</p>
+
+<ul>
+<li><strong>Match the tool to the problem shape.</strong> Gap night is integration glue with a pricing formula — n8n Code nodes are enough. Pool heaters are multi-vendor API coordination with a rules engine — that earns a service. Don't force everything into one layer.</li>
+<li><strong>The sheet is the audit trail, not the source of truth.</strong> Google Sheets are where humans look. Vendor APIs and Guesty are where truth lives. The automation's job is to sync them, not to trust the sheet as-is.</li>
+<li><strong>Leave humans a ready-to-act artifact.</strong> Gap night doesn't auto-send every offer — it creates a Guesty task with the email, call script, and pricing breakdown baked in. The ops team still makes the call on high-value offers. Automation does the prep; humans do the judgment.</li>
+<li><strong>Cache the expensive calls.</strong> Guesty OAuth on every node would be slow and brittle. Redis token caching and deliberate wait nodes between batch operations keep the workflows reliable under rate limits.</li>
+<li><strong>Simulate before you toggle physical equipment.</strong> Pool heaters are not Slack messages. A wrong toggle is a guest arriving to a cold pool or a pump running dry. Default to simulation, prove the loop, then flip the flag.</li>
+<li><strong>Business rules belong in one place.</strong> Whether it's a Code node or a Python rules engine, the pricing formula and the heater SOP should each live in exactly one location. If the ops team and the automation disagree, the automation should win — because it's the one applying the rules consistently.</li>
+</ul>
+
+<p>If you're wiring up n8n for ops automation — especially across systems that were never designed to talk to each other — I'd love to compare notes. Reach out.</p>
+
+<h2>Further reading</h2>
+
+<p>Patterns and tools that shaped these builds:</p>
+
+<ul>
+<li><a href="https://docs.n8n.io/" target="_blank" rel="noopener noreferrer">n8n documentation</a> — workflow triggers, Code nodes, HTTP Request nodes, and credential management.</li>
+<li><a href="https://open-api-docs.guesty.com/docs/quick-start-guide" target="_blank" rel="noopener noreferrer">Guesty Open API</a> — reservations, calendar pricing, tasks, and conversation endpoints we used in both workflows.</li>
+<li><a href="https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/" target="_blank" rel="noopener noreferrer">n8n Google Sheets integration</a> — how we used sheets as the human-readable audit layer.</li>
+<li><a href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener noreferrer">FastAPI</a> — the framework behind PHMDS, deployed to Cloud Run for the pool heater rules engine.</li>
+</ul>
+
+<p>Until next time, Sahej.</p>

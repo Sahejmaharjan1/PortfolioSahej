@@ -5,8 +5,7 @@ export const siteConfig = {
     "AI engineer building production-grade multi-agent systems and RAG pipelines on GCP. Based in Dublin, Ireland.",
   url: "https://sahejmaharjan.com.np",
   email: "sahejmaharjan@gmail.com",
-  avatar:
-    "https://jlbuoaqifsjflbuljeya.supabase.co/storage/v1/object/public/blog-media/avatars/dd7fad12-c5fe-48a5-98bd-a5ea9d0cd3a4.jpg",
+  avatar: "/sahej-avatar.jpg",
   location: "Dublin, Ireland",
   company: "Tactix AI · DVx Ventures",
   techStack: "Python · React · GCP",
@@ -15,6 +14,7 @@ export const siteConfig = {
 export const navLinks = [
   { href: "#work", label: "work" },
   { href: "#writing", label: "writing" },
+  { href: "/blog", label: "blog" },
   { href: "#opensource", label: "oss" },
   { href: "#skills", label: "skills" },
   { href: "#contact", label: "contact" },
@@ -44,7 +44,11 @@ export const terminalProfile = [
   {
     key: "frameworks",
     value:
-      '["Google ADK", "FastAPI", "React", "Next.js", "React Native", "NestJS", "Electron"]',
+      '["Google ADK", "FastAPI", "React", "Next.js", "React Native", "NestJS", "Electron", "MCP", "n8n"]',
+  },
+  {
+    key: "agent_tooling",
+    value: '["MCP tools", "Cursor Skills", "n8n"]',
   },
   {
     key: "published",
@@ -176,6 +180,9 @@ export const skillGroups = [
     skills: [
       { icon: "🤖", name: "Google ADK", category: "Agent orchestration" },
       { icon: "🔗", name: "RAG pipelines", category: "AI engineering" },
+      { icon: "🔌", name: "MCP tools", category: "Agent integrations" },
+      { icon: "⚡", name: "Cursor Skills", category: "Agent workflows" },
+      { icon: "🔄", name: "n8n", category: "Workflow automation" },
       { icon: "🐍", name: "FastAPI", category: "Backend / APIs" },
       { icon: "🪺", name: "NestJS", category: "Backend / APIs" },
       { icon: "🌐", name: "Node.js", category: "Backend / JS" },
