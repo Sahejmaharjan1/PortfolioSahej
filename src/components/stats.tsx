@@ -10,7 +10,7 @@ const colorMap = {
 export function Stats() {
   return (
     <div
-      className="mb-20 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5"
+      className="mb-20 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-6"
       role="list"
       aria-label="Key stats"
     >

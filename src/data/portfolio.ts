@@ -23,6 +23,7 @@ export const navLinks = [
 export const stats = [
   { value: "5+", label: "years eng", color: "accent3" },
   { value: "3", label: "AI systems live", color: "accent2" },
+  { value: "#2", label: "Product Hunt", color: "amber" },
   { value: "∞", label: "agent calls/day", color: "green" },
   { value: "1", label: "co-authored posts", color: "amber" },
   { value: "1", label: "merged OSS PR", color: "green" },
@@ -57,6 +58,10 @@ export const terminalProfile = [
   {
     key: "opensource",
     value: '["Codú #1283 — company logo upload (merged)"]',
+  },
+  {
+    key: "launches",
+    value: '["Indigo — #2 Product of the Day on Product Hunt (maker)"]',
   },
   { key: "status", value: '"building · shipping · writing"' },
 ] as const;
@@ -98,7 +103,7 @@ export const workExperiences = [
     period: "Aug 2022 → Sep 2025",
     location: "Remote",
     description:
-      "Led front-end engineering across two product teams — Shopswap and Indigo AI. Owned full-stack feature delivery, architecture decisions, and production releases for React and Next.js applications serving live users.",
+      "Led front-end engineering across two product teams — Shopswap and Indigo AI. Owned full-stack feature delivery, architecture decisions, and production releases for React and Next.js applications serving live users. Maker on Indigo's Product Hunt launch — ranked #2 Product of the Day on launch day.",
     tags: [
       "React",
       "Next.js",
@@ -106,8 +111,18 @@ export const workExperiences = [
       "AWS",
       "Node.js",
       "Full Stack",
+      "Product Hunt",
     ],
     highlighted: false,
+    productHunt: {
+      rank: "#2",
+      title: "Indigo on Product Hunt",
+      subtitle: "#2 Product of the Day · launch day",
+      description:
+        "Shipped Indigo as a maker while leading front-end engineering at Indigo AI. Hit #2 on Product Hunt on launch day — one of the strongest debuts in the company's history.",
+      url: "https://www.producthunt.com/products/indigo",
+      role: "Maker",
+    },
   },
   {
     title: "Full Stack Engineer",
