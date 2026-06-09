@@ -5,6 +5,7 @@ import {
   IconMail,
   IconPencil,
 } from "@tabler/icons-react";
+import { ContactForm } from "@/components/contact-form";
 import { socialLinks } from "@/data/portfolio";
 
 const iconMap = {
@@ -23,13 +24,24 @@ export function Contact() {
         <h3 className="mb-2.5 text-2xl font-bold tracking-[-0.025em]">
           Let&apos;s build something worth building
         </h3>
-        <p className="mx-auto mb-[30px] max-w-lg text-[15px] leading-[1.7] text-muted-2">
+        <p className="mx-auto mb-8 max-w-lg text-[15px] leading-[1.7] text-muted-2">
           AI engineer based in Dublin, open to conversations about hard
           problems.
           <br />
           Especially interested in multi-agent systems, data platforms, and
           production AI.
         </p>
+
+        <ContactForm />
+
+        <div className="my-8 flex items-center gap-4">
+          <div className="h-px flex-1 bg-border" />
+          <span className="font-mono text-[10px] tracking-[0.12em] text-muted uppercase">
+            or find me elsewhere
+          </span>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+
         <div className="flex flex-wrap justify-center gap-2.5">
           {socialLinks.map((link) => {
             const Icon = iconMap[link.icon];
