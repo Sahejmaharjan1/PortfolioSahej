@@ -19,7 +19,7 @@ export function Hero() {
         <div className="mb-[22px] flex items-center gap-2">
           <StatusDot />
           <span className="font-mono text-[11px] tracking-[0.12em] text-green uppercase">
-            AI engineer · Los Angeles, CA
+            AI engineer · Dublin, Ireland
           </span>
         </div>
 
