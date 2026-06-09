@@ -71,7 +71,7 @@ export const workExperiences = [
     title: "AI Engineer",
     company: "Tactix AI · DVx Ventures",
     period: "2025 → present",
-    location: "Dublin, Ireland",
+    location: "Remote (Los Angeles, CA)",
     description:
       "Building a multi-agent AI platform for restaurant operators. Architecting RAG pipelines over BigQuery with dbt-transformed data models. Designing access control systems that scope every agent call to what the authenticated user is allowed to see. Deploying containerised agents to GCP Cloud Run with Google ADK as the orchestration layer. Co-authoring a public engineering blog series on the systems behind Tactix.",
     tags: [
