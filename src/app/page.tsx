@@ -4,6 +4,7 @@ import { Terminal } from "@/components/terminal";
 import { Stats } from "@/components/stats";
 import { Work } from "@/components/work";
 import { Writing } from "@/components/writing";
+import { OpenSource } from "@/components/opensource";
 import { Skills } from "@/components/skills";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
@@ -18,6 +19,7 @@ export default function Home() {
         <Stats />
         <Work />
         <Writing />
+        <OpenSource />
         <Skills />
         <Contact />
         <Footer />

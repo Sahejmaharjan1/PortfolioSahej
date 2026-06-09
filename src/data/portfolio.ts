@@ -15,6 +15,7 @@ export const siteConfig = {
 export const navLinks = [
   { href: "#work", label: "work" },
   { href: "#writing", label: "writing" },
+  { href: "#opensource", label: "oss" },
   { href: "#skills", label: "skills" },
   { href: "#contact", label: "contact" },
 ] as const;
@@ -24,6 +25,7 @@ export const stats = [
   { value: "3", label: "AI systems live", color: "accent2" },
   { value: "∞", label: "agent calls/day", color: "green" },
   { value: "1", label: "co-authored posts", color: "amber" },
+  { value: "1", label: "merged OSS PR", color: "green" },
 ] as const;
 
 export const terminalProfile = [
@@ -47,6 +49,10 @@ export const terminalProfile = [
   {
     key: "published",
     value: '["Access Control for AI Agents — DVx Blog"]',
+  },
+  {
+    key: "opensource",
+    value: '["Codú #1283 — company logo upload (merged)"]',
   },
   { key: "status", value: '"building · shipping · writing"' },
 ] as const;
@@ -121,6 +127,37 @@ export const workExperiences = [
     highlighted: false,
   },
 ] as const;
+
+export const openSourceContribution = {
+  repo: {
+    name: "codu-code/codu",
+    url: "https://github.com/codu-code/codu",
+    siteUrl: "https://codu.co",
+    description:
+      "Codú's open-source codebase — a community platform where web developers learn, share, and collaborate.",
+    stars: 154,
+    forks: 169,
+  },
+  pr: {
+    number: 1283,
+    url: "https://github.com/codu-code/codu/pull/1283",
+    title: "Company logo upload for job creation form",
+    date: "Oct 18, 2025",
+    issue: "#1148",
+    status: "merged" as const,
+    label: "Hacktoberfest",
+    description:
+      "Shipped end-to-end company logo uploads on the job creation flow — from client-side validation through S3 storage to schema-backed form submission.",
+    highlights: [
+      "File upload with 1MB size validation",
+      "S3 signed URL upload flow",
+      "Zod schema extension for companyLogo field",
+      "Sentry error logging and toast feedback",
+    ],
+    tags: ["Next.js", "React", "AWS S3", "Zod", "Sentry", "TypeScript"],
+    reviewer: "NiallJoeMaher",
+  },
+} as const;
 
 export const blogPost = {
   href: "https://blog.dvx.ventures/access-control-for-ai-agents",
