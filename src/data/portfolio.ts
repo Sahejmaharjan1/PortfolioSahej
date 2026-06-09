@@ -1,0 +1,229 @@
+export const siteConfig = {
+  name: "Sahej Maharjan",
+  title: "Sahej Maharjan — AI Engineer",
+  description:
+    "AI engineer building production-grade multi-agent systems and RAG pipelines on GCP. Based in Dublin, Ireland.",
+  url: "https://sahejmaharjan.com.np",
+  email: "sahejmaharjan@gmail.com",
+  avatar:
+    "https://jlbuoaqifsjflbuljeya.supabase.co/storage/v1/object/public/blog-media/avatars/dd7fad12-c5fe-48a5-98bd-a5ea9d0cd3a4.jpg",
+  location: "Dublin, Ireland",
+  company: "Tactix AI · DVx Ventures",
+  techStack: "Python · React · GCP",
+} as const;
+
+export const navLinks = [
+  { href: "#work", label: "work" },
+  { href: "#writing", label: "writing" },
+  { href: "#skills", label: "skills" },
+  { href: "#contact", label: "contact" },
+] as const;
+
+export const stats = [
+  { value: "5+", label: "years eng", color: "accent3" },
+  { value: "3", label: "AI systems live", color: "accent2" },
+  { value: "∞", label: "agent calls/day", color: "green" },
+  { value: "1", label: "co-authored posts", color: "amber" },
+] as const;
+
+export const terminalProfile = [
+  { key: "name", value: '"Sahej Maharjan"' },
+  { key: "location", value: '"Dublin, Ireland 🇮🇪"' },
+  { key: "company", value: '"Tactix AI (via DVx Ventures)"' },
+  {
+    key: "focus",
+    value: '["multi-agent systems", "RAG", "data engineering"]',
+  },
+  {
+    key: "infra",
+    value:
+      '["AWS Lambda", "ECS", "S3", "DynamoDB", "GCP Cloud Run", "BigQuery", "Supabase"]',
+  },
+  {
+    key: "frameworks",
+    value:
+      '["Google ADK", "FastAPI", "React", "Next.js", "React Native", "NestJS", "Electron"]',
+  },
+  {
+    key: "published",
+    value: '["Access Control for AI Agents — DVx Blog"]',
+  },
+  { key: "status", value: '"building · shipping · writing"' },
+] as const;
+
+export const workExperiences = [
+  {
+    title: "AI Engineer",
+    company: "Tactix AI · DVx Ventures",
+    period: "2025 → present",
+    location: "Dublin, Ireland",
+    description:
+      "Building a multi-agent AI platform for restaurant operators. Architecting RAG pipelines over BigQuery with dbt-transformed data models. Designing access control systems that scope every agent call to what the authenticated user is allowed to see. Deploying containerised agents to GCP Cloud Run with Google ADK as the orchestration layer. Co-authoring a public engineering blog series on the systems behind Tactix.",
+    tags: [
+      "Google ADK",
+      "FastAPI",
+      "GCP Cloud Run",
+      "BigQuery",
+      "dbt",
+      "RAG",
+      "Multi-agent",
+      "Supabase RLS",
+      "React",
+    ],
+    highlighted: true,
+  },
+  {
+    title: "Lead Front-end Engineer / Full Stack Engineer",
+    company: "Shopswap & Indigo AI",
+    companyLinks: [
+      {
+        label: "Shopswap",
+        url: "https://www.linkedin.com/company/shopswap/about/",
+      },
+      {
+        label: "Indigo AI",
+        url: "https://www.linkedin.com/company/getindigoai/posts/?feedView=all",
+      },
+    ],
+    period: "Aug 2022 → Sep 2025",
+    location: "Remote",
+    description:
+      "Led front-end engineering across two product teams — Shopswap and Indigo AI. Owned full-stack feature delivery, architecture decisions, and production releases for React and Next.js applications serving live users.",
+    tags: [
+      "React",
+      "Next.js",
+      "React Native",
+      "AWS",
+      "Node.js",
+      "Full Stack",
+    ],
+    highlighted: false,
+  },
+  {
+    title: "Full Stack Engineer",
+    company: "Preparie Inc.",
+    companyUrl: "https://www.eatpreparie.com/",
+    period: "Sep 2021 → Aug 2022",
+    location: "Canada · Remote",
+    description:
+      "Worked as front-end team lead. Oversaw day-to-day operations of the frontend development team — scheduling, coverage, documentation, and delivery across the Preparie platform.",
+    tags: ["React", "Next.js", "Team Lead", "Node.js"],
+    highlighted: false,
+  },
+  {
+    title: "React / React Native / Next.js Developer",
+    company: "Bottle Technology",
+    period: "Sep 2020 → Dec 2021",
+    location: "Jhamsikhel, Nepal",
+    description:
+      "Performed front-end and mobile development for all client projects. Wrote 200+ JavaScript components for client websites and mobile apps. On-boarded and mentored a new front-end developer through regular coaching sessions and work reviews.",
+    tags: ["React", "React Native", "Next.js", "JavaScript", "Mobile"],
+    highlighted: false,
+  },
+] as const;
+
+export const blogPost = {
+  href: "https://blog.dvx.ventures/access-control-for-ai-agents",
+  tag: "Engineering · DVx Blog",
+  date: "Jun 03, 2026 · 12 min",
+  title: "Rebuilding our Access Control for AI Agents",
+  description:
+    "The data model that lets an AI agent pull naturally from your data without ever seeing a store it shouldn't. Covers hybrid RBAC/ACL design, single-function Postgres auth, and why BigQuery should never hold a grant.",
+  coAuthors: "Sahej Maharjan & Amit Maraj",
+  coAuthorInitials: "AM",
+} as const;
+
+export const skillGroups = [
+  {
+    title: "AI & Backend",
+    skills: [
+      { icon: "🤖", name: "Google ADK", category: "Agent orchestration" },
+      { icon: "🔗", name: "RAG pipelines", category: "AI engineering" },
+      { icon: "🐍", name: "FastAPI", category: "Backend / APIs" },
+      { icon: "🪺", name: "NestJS", category: "Backend / APIs" },
+      { icon: "🌐", name: "Node.js", category: "Backend / JS" },
+    ],
+  },
+  {
+    title: "Frontend & Mobile",
+    skills: [
+      { icon: "⚛️", name: "React", category: "Frontend" },
+      { icon: "▲", name: "Next.js", category: "Frontend / SSR" },
+      { icon: "📱", name: "React Native", category: "Mobile" },
+      { icon: "🖥️", name: "Electron", category: "Desktop" },
+    ],
+  },
+  {
+    title: "Data & DevOps",
+    skills: [
+      { icon: "🍃", name: "MongoDB", category: "Database" },
+      { icon: "🐘", name: "Supabase / Postgres", category: "Auth + database" },
+      { icon: "🔧", name: "dbt", category: "Data transformation" },
+      { icon: "📦", name: "Docker", category: "Containerisation" },
+    ],
+  },
+] as const;
+
+export const cloudPlatforms = [
+  {
+    name: "AWS",
+    services: [
+      "Lambda",
+      "ECS",
+      "Fargate",
+      "S3",
+      "DynamoDB",
+      "CloudFront",
+      "Route 53",
+      "IAM",
+      "Cognito",
+      "Secrets Manager",
+      "SQS",
+      "SNS",
+      "EventBridge",
+      "AppSync",
+      "Amplify",
+      "CloudWatch",
+      "Elastic Beanstalk",
+    ],
+  },
+  {
+    name: "GCP",
+    services: [
+      "Cloud Run",
+      "Cloud Storage",
+      "Firestore",
+      "Secret Manager",
+      "Artifact Registry",
+      "BigQuery",
+    ],
+  },
+] as const;
+
+export const socialLinks = [
+  {
+    href: "mailto:sahejmaharjan@gmail.com",
+    label: "sahejmaharjan@gmail.com",
+    icon: "mail" as const,
+  },
+  {
+    href: "https://github.com/Sahejmaharjan1",
+    label: "GitHub",
+    icon: "github" as const,
+  },
+  {
+    href: "https://www.linkedin.com/in/sahej-maharjan-433a34105/",
+    label: "LinkedIn",
+    icon: "linkedin" as const,
+  },
+  {
+    href: "https://blog.dvx.ventures/author/sahej-maharjan-ed67",
+    label: "DVx Blog",
+    icon: "pencil" as const,
+  },
+  {
+    href: "https://stackoverflow.com/users/13797926/sahej-maharjan",
+    label: "Stack Overflow",
+    icon: "stackoverflow" as const,
+  },
+] as const;
