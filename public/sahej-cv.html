@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sahej Maharjan — CV</title>
+  <meta name="description" content="CV of Sahej Maharjan — AI Engineer building multi-agent systems and RAG pipelines on GCP. Dublin, Ireland." />
+  <style>
+    :root {
+      --text: #111827;
+      --muted: #4b5563;
+      --accent: #6d28d9;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.45;
+      color: var(--text);
+      background: #f3f4f6;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      max-width: 8.5in;
+      margin: 24px auto;
+      padding: 0.55in 0.6in;
+      background: var(--bg);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    header {
+      border-bottom: 2px solid var(--text);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: 24pt;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .role {
+      font-size: 12pt;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      margin-top: 10px;
+      font-size: 9pt;
+      color: var(--muted);
+    }
+
+    .contact a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    section {
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: 10pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+
+    .summary {
+      color: var(--muted);
+      font-size: 10pt;
+    }
+
+    .job {
+      margin-bottom: 12px;
+    }
+
+    .job:last-child {
+      margin-bottom: 0;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .job-title {
+      font-weight: 700;
+      font-size: 10.5pt;
+    }
+
+    .job-company {
+      font-weight: 600;
+    }
+
+    .job-meta {
+      font-size: 9pt;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .job-location {
+      font-size: 9pt;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .job ul {
+      margin-top: 5px;
+      padding-left: 16px;
+    }
+
+    .job li {
+      margin-bottom: 3px;
+      color: var(--text);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    .tag {
+      font-size: 8pt;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #f3f4f6;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .highlight {
+      display: inline-block;
+      font-size: 8pt;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #fef3c7;
+      color: #92400e;
+      margin-top: 5px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 24px;
+    }
+
+    .skill-group h3 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .skill-group ul {
+      padding-left: 16px;
+      color: var(--muted);
+      font-size: 9.5pt;
+    }
+
+    .skill-group li {
+      margin-bottom: 2px;
+    }
+
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .edu-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .edu-school {
+      font-weight: 600;
+    }
+
+    .edu-detail {
+      color: var(--muted);
+      font-size: 9.5pt;
+    }
+
+    .edu-year {
+      font-size: 9pt;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .pub {
+      margin-bottom: 8px;
+    }
+
+    .pub-title {
+      font-weight: 600;
+    }
+
+    .pub-meta {
+      font-size: 9pt;
+      color: var(--muted);
+    }
+
+    .oss-title {
+      font-weight: 600;
+    }
+
+    .oss-meta {
+      font-size: 9pt;
+      color: var(--muted);
+    }
+
+    .toolbar {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      max-width: 280px;
+    }
+
+    .toolbar-hint {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: white;
+      font-size: 11px;
+      line-height: 1.45;
+      color: var(--muted);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    }
+
+    .print-btn {
+      padding: 10px 18px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(109, 40, 217, 0.35);
+    }
+
+    .print-btn:hover {
+      opacity: 0.9;
+    }
+
+    @page {
+      size: letter;
+      margin: 0.55in;
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .toolbar {
+        display: none !important;
+      }
+
+      .page {
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        max-width: none;
+      }
+
+      .job {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .pub,
+      .edu-row,
+      .skill-group {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      h2 {
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        margin: 0;
+        padding: 24px 20px;
+        box-shadow: none;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <p class="toolbar-hint">
+      Choose <strong>Save as PDF</strong>, then turn off <strong>Headers and footers</strong> under More settings for a clean export.
+    </p>
+    <button class="print-btn" type="button" id="download-pdf">Download PDF</button>
+  </div>
+
+  <main class="page">
+    <header>
+      <h1>Sahej Maharjan</h1>
+      <p class="role">AI Engineer · Full-Stack</p>
+      <div class="contact">
+        <span>Dublin, Ireland</span>
+        <a href="mailto:sahejmaharjan@gmail.com">sahejmaharjan@gmail.com</a>
+        <a href="https://sahejmaharjan.com.np">sahejmaharjan.com.np</a>
+        <a href="https://www.linkedin.com/in/sahej-maharjan-433a34105/">LinkedIn</a>
+        <a href="https://github.com/Sahejmaharjan1">GitHub</a>
+        <a href="https://stackoverflow.com/users/13797926/sahej-maharjan">Stack Overflow</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Summary</h2>
+      <p class="summary">
+        AI engineer building production-grade multi-agent systems and RAG pipelines on GCP.
+        Currently shipping AI at Tactix AI — turning messy restaurant data into intelligent operator tools.
+        5+ years across front-end leadership, full-stack delivery, and production AI systems.
+        Co-author on DVx engineering blog; merged open-source contributor; maker on Indigo's #2 Product Hunt launch.
+      </p>
+    </section>
+
+    <section>
+      <h2>Work Experience</h2>
+
+      <article class="job">
+        <div class="job-header">
+          <div>
+            <div class="job-title">AI Engineer</div>
+            <div class="job-company">Tactix AI · DVx Ventures</div>
+          </div>
+          <div class="job-meta">2025 → present</div>
+        </div>
+        <div class="job-location">Remote (Los Angeles, CA)</div>
+        <ul>
+          <li>Building a multi-agent AI platform for restaurant operators on GCP Cloud Run with Google ADK.</li>
+          <li>Architecting RAG pipelines over BigQuery with dbt-transformed data models.</li>
+          <li>Designing access control systems that scope every agent call to authenticated user permissions.</li>
+          <li>Co-authoring a public engineering blog series on the systems behind Tactix.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Google ADK</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">GCP Cloud Run</span>
+          <span class="tag">BigQuery</span>
+          <span class="tag">dbt</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Multi-agent</span>
+          <span class="tag">Supabase RLS</span>
+          <span class="tag">React</span>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Lead Front-end Engineer / Full Stack Engineer</div>
+            <div class="job-company">Indigo AI</div>
+          </div>
+          <div class="job-meta">Oct 29, 2024 → Sep 2025</div>
+        </div>
+        <div class="job-location">Remote</div>
+        <ul>
+          <li>Continued as lead front-end engineer after Shopswap was acquired by Indigo AI.</li>
+          <li>Owned full-stack feature delivery, architecture decisions, and production releases for React and Next.js applications serving live users.</li>
+          <li>Collaborated with design and backend teams to resolve technical challenges across cross-functional delivery.</li>
+        </ul>
+        <span class="highlight">#2 Product of the Day on Product Hunt — Indigo launch (Maker)</span>
+        <div class="tags">
+          <span class="tag">React</span>
+          <span class="tag">Next.js</span>
+          <span class="tag">React Native</span>
+          <span class="tag">AWS</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Full Stack</span>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Lead Front-end Engineer / Full Stack Engineer</div>
+            <div class="job-company">Shopswap</div>
+          </div>
+          <div class="job-meta">Aug 2022 → Oct 29, 2024</div>
+        </div>
+        <div class="job-location">Remote</div>
+        <ul>
+          <li>Led front-end engineering for Shopswap, a toolkit for brand partnerships, giveaways, and discount sharing.</li>
+          <li>Developed and maintained frontend architecture and coding standards; delivered production features for React and Next.js applications.</li>
+          <li>Proactively identified and resolved technical challenges and roadblocks across cross-functional delivery until acquisition by Indigo AI.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">React</span>
+          <span class="tag">Next.js</span>
+          <span class="tag">React Native</span>
+          <span class="tag">AWS</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Full Stack</span>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Full Stack Engineer</div>
+            <div class="job-company">Preparie Inc.</div>
+          </div>
+          <div class="job-meta">Sep 2021 → Aug 2022</div>
+        </div>
+        <div class="job-location">Canada · Remote</div>
+        <ul>
+          <li>Worked as front-end team lead overseeing day-to-day operations of the frontend development team.</li>
+          <li>Managed scheduling, coverage, documentation, and delivery across the Preparie platform.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">React</span>
+          <span class="tag">Next.js</span>
+          <span class="tag">Team Lead</span>
+          <span class="tag">Node.js</span>
+        </div>
+      </article>
+
+      <article class="job">
+        <div class="job-header">
+          <div>
+            <div class="job-title">React / React Native / Next.js Developer</div>
+            <div class="job-company">Bottle Technology</div>
+          </div>
+          <div class="job-meta">Sep 2020 → Dec 2021</div>
+        </div>
+        <div class="job-location">Jhamsikhel, Nepal</div>
+        <ul>
+          <li>Performed front-end and mobile development for all client projects.</li>
+          <li>Wrote 200+ JavaScript components for client websites and mobile apps.</li>
+          <li>On-boarded and mentored a new front-end developer through regular coaching sessions and work reviews.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">React</span>
+          <span class="tag">React Native</span>
+          <span class="tag">Next.js</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Mobile</span>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <h2>Writing</h2>
+      <div class="pub">
+        <div class="pub-title">Rebuilding our Access Control for AI Agents</div>
+        <div class="pub-meta">DVx Ventures Engineering Blog · Jun 2026 · Co-authored with Amit Maraj</div>
+        <p class="summary" style="margin-top: 4px;">
+          Hybrid RBAC/ACL design, single-function Postgres auth, and why BigQuery should never hold a grant.
+        </p>
+      </div>
+      <div class="pub">
+        <div class="pub-title">Automating Gap-Night Revenue and Pool Heater Ops with n8n</div>
+        <div class="pub-meta">Personal blog · Jun 2026</div>
+        <p class="summary" style="margin-top: 4px;">
+          Daily automation for vacation-rental gap-night upsells and pool heater management across 100+ properties.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Open Source</h2>
+      <div class="oss-title">Company logo upload for job creation form — codu-code/codu</div>
+      <div class="oss-meta">Merged PR #1283 · Oct 2025 · Hacktoberfest · Approved by @NiallJoeMaher</div>
+      <ul style="margin-top: 5px; padding-left: 16px; color: var(--muted); font-size: 9.5pt;">
+        <li>End-to-end company logo uploads: client validation, S3 signed URL flow, Zod schema extension.</li>
+        <li>Sentry error logging and toast feedback on the Codú job creation flow.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Next.js</span>
+        <span class="tag">React</span>
+        <span class="tag">AWS S3</span>
+        <span class="tag">Zod</span>
+        <span class="tag">TypeScript</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>AI & Backend</h3>
+          <ul>
+            <li>Google ADK, RAG pipelines, MCP tools, Cursor Skills, n8n</li>
+            <li>Python, FastAPI, Node.js, NestJS</li>
+            <li>Multi-agent systems, workflow automation</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Frontend & Mobile</h3>
+          <ul>
+            <li>JavaScript (ES6), TypeScript</li>
+            <li>React, React Native, Next.js, Electron</li>
+            <li>HTML5, CSS, SCSS, Tailwind CSS</li>
+            <li>Redux, React Query, Apollo Client</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Data & DevOps</h3>
+          <ul>
+            <li>Supabase / Postgres, MongoDB, dbt, Docker</li>
+            <li>Serverless Framework</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Cloud</h3>
+          <ul>
+            <li><strong>GCP:</strong> Cloud Run, Cloud Storage, Firestore, Secret Manager, Artifact Registry, BigQuery</li>
+            <li><strong>AWS:</strong> Lambda, ECS, Fargate, S3, DynamoDB, CloudFront, Route 53, IAM, Cognito, Secrets Manager, SQS, SNS, EventBridge, AppSync, Amplify, CloudWatch, Elastic Beanstalk</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="edu-row">
+        <div>
+          <div class="edu-school"><a href="https://www.griffith.ie/">Griffith College Dublin</a></div>
+          <div class="edu-detail">Master of Science in Big Data Management &amp; Analytics</div>
+        </div>
+        <div class="edu-year">Sep 2025 → 2026</div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-school">Deerwalk Institute of Technology</div>
+          <div class="edu-detail">Bachelor of Computer Science and Technology</div>
+        </div>
+        <div class="edu-year">2017 – 2021</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("download-pdf").addEventListener("click", function () {
+      window.print();
+    });
+  </script>
+</body>
+</html>

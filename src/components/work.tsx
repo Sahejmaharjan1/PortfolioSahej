@@ -23,25 +23,7 @@ export function Work() {
                 <h3 className="text-base font-semibold tracking-[-0.01em]">
                   {role.title}
                 </h3>
-                {"companyLinks" in role && role.companyLinks ? (
-                  <p className="text-[13px] text-accent-2">
-                    {role.companyLinks.map((link, index) => (
-                      <span key={link.url}>
-                        {index > 0 && (
-                          <span className="text-muted"> · </span>
-                        )}
-                        <a
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-accent-2 no-underline transition-colors hover:text-accent-3"
-                        >
-                          {link.label}
-                        </a>
-                      </span>
-                    ))}
-                  </p>
-                ) : "companyUrl" in role && role.companyUrl ? (
+                {"companyUrl" in role && role.companyUrl ? (
                   <a
                     href={role.companyUrl}
                     target="_blank"

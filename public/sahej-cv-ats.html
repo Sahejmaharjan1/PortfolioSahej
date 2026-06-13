@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Sahej Maharjan Resume</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.28;
+      color: #000;
+      background: #fff;
+    }
+
+    .toolbar {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      max-width: 300px;
+    }
+
+    .toolbar-hint {
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 11px;
+      line-height: 1.45;
+      color: #333;
+    }
+
+    .print-btn {
+      padding: 10px 18px;
+      background: #000;
+      color: #fff;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .print-btn.secondary {
+      background: #fff;
+      color: #000;
+      border: 1px solid #000;
+    }
+
+    .page {
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.35in 0.45in;
+    }
+
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px 10px;
+      margin-bottom: 3px;
+    }
+
+    h1 {
+      font-size: 15pt;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .headline {
+      font-size: 10pt;
+      font-weight: 600;
+    }
+
+    .contact {
+      font-size: 8.5pt;
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+
+    .sep {
+      color: #666;
+    }
+
+    h2 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-bottom: 1px solid #000;
+      margin: 7px 0 4px;
+      padding-bottom: 1px;
+    }
+
+    p {
+      margin-bottom: 4px;
+    }
+
+    .job {
+      margin-bottom: 5px;
+    }
+
+    .job-head {
+      font-weight: 700;
+      font-size: 9.5pt;
+    }
+
+    .job-meta {
+      font-size: 8.5pt;
+      font-weight: 400;
+    }
+
+    .job ul {
+      margin: 2px 0 0 14px;
+    }
+
+    .job li {
+      margin-bottom: 1px;
+    }
+
+    .edu-line {
+      margin-bottom: 2px;
+    }
+
+    .skills-line {
+      margin-bottom: 2px;
+    }
+
+    .skills-line strong {
+      font-weight: 700;
+    }
+
+    .extra-line {
+      margin-bottom: 3px;
+      font-size: 9pt;
+    }
+
+    .extra-title {
+      font-weight: 700;
+    }
+
+    @page {
+      size: letter;
+      margin: 0.35in 0.45in;
+    }
+
+    @media print {
+      .toolbar {
+        display: none !important;
+      }
+
+      .page {
+        padding: 0;
+        max-width: none;
+      }
+
+      body {
+        font-size: 9.5pt;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <p class="toolbar-hint">
+      Upload the DOCX or a print-saved PDF (headers/footers off) to job portals. Do not upload the HTML file.
+      <a href="/sahej-cv.html" style="color: inherit;">Portfolio version</a>
+    </p>
+    <div class="toolbar-actions">
+      <a class="print-btn secondary" href="/sahej-cv-ats.docx" download="Sahej-Maharjan-CV.docx">Download DOCX</a>
+      <button class="print-btn" type="button" id="download-pdf">Download PDF</button>
+    </div>
+  </div>
+
+  <main class="page">
+    <div class="header-top">
+      <h1>Sahej Maharjan</h1>
+      <span class="headline">AI Engineer | Full-Stack Engineer</span>
+    </div>
+    <p class="contact">
+      Dublin, Ireland <span class="sep">|</span>
+      sahejmaharjan@gmail.com <span class="sep">|</span>
+      sahejmaharjan.com.np <span class="sep">|</span>
+      linkedin.com/in/sahej-maharjan-433a34105 <span class="sep">|</span>
+      github.com/Sahejmaharjan1 <span class="sep">|</span>
+      stackoverflow.com/users/13797926/sahej-maharjan
+    </p>
+
+    <h2>Summary</h2>
+    <p>
+      AI engineer building multi-agent systems and RAG pipelines on GCP at Tactix AI. 5+ years across frontend leadership, full-stack delivery, and production AI. Co-author on DVx engineering blog, merged OSS contributor, Indigo Product Hunt #2 (maker).
+    </p>
+
+    <h2>Work Experience</h2>
+
+    <article class="job">
+      <p class="job-head">AI Engineer <span class="job-meta">| Tactix AI (via DVx Ventures) | Remote | Jan 2025 - Present</span></p>
+      <ul>
+        <li>Building multi-agent AI platform on GCP Cloud Run with Google ADK; RAG pipelines over BigQuery with dbt models.</li>
+        <li>Designing access control scoping every agent call to authenticated user permissions.</li>
+        <li>Co-authoring public engineering blog series on Tactix systems.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <p class="job-head">Lead Frontend Engineer / Full Stack Engineer <span class="job-meta">| Indigo AI | Remote | Oct 29, 2024 - Sep 2025</span></p>
+      <ul>
+        <li>Continued as lead after Shopswap acquisition; owned React/Next.js architecture and production releases.</li>
+        <li>Maker on Indigo Product Hunt launch, ranked #2 Product of the Day.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <p class="job-head">Lead Frontend Engineer / Full Stack Engineer <span class="job-meta">| Shopswap | Remote | Aug 2022 - Oct 29, 2024</span></p>
+      <ul>
+        <li>Led frontend for brand partnership toolkit; owned architecture, coding standards, and production delivery.</li>
+        <li>Full-stack feature delivery on React/Next.js until acquisition by Indigo AI.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <p class="job-head">Full Stack Engineer / Frontend Team Lead <span class="job-meta">| Preparie Inc. | Remote | Sep 2021 - Aug 2022</span></p>
+      <ul>
+        <li>Led frontend team operations, scheduling, documentation, and delivery across the Preparie platform.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <p class="job-head">React / React Native / Next.js Developer <span class="job-meta">| Bottle Technology | Nepal | Sep 2020 - Dec 2021</span></p>
+      <ul>
+        <li>Frontend and mobile development; wrote 200+ JavaScript components; mentored a new frontend developer.</li>
+      </ul>
+    </article>
+
+    <h2>Education</h2>
+    <p class="edu-line"><strong>Griffith College Dublin</strong> - MSc Big Data Management and Analytics | Sep 2025 - 2026</p>
+    <p class="edu-line"><strong>Deerwalk Institute of Technology</strong> - BSc Computer Science and Technology | 2017 - 2021</p>
+
+    <h2>Skills</h2>
+    <p class="skills-line"><strong>AI/Backend:</strong> Google ADK, RAG, MCP, n8n, Python, FastAPI, Node.js, NestJS, multi-agent systems</p>
+    <p class="skills-line"><strong>Frontend:</strong> JavaScript, TypeScript, React, React Native, Next.js, Electron, Tailwind CSS, Redux, React Query</p>
+    <p class="skills-line"><strong>Data/DevOps:</strong> Supabase, PostgreSQL, MongoDB, dbt, Docker, Serverless Framework</p>
+    <p class="skills-line"><strong>Cloud:</strong> GCP (Cloud Run, BigQuery, Firestore), AWS (Lambda, ECS, S3, DynamoDB, Cognito, AppSync, Amplify, CloudFront)</p>
+
+    <h2>Publications and Open Source</h2>
+    <p class="extra-line"><span class="extra-title">Rebuilding our Access Control for AI Agents</span> - DVx Blog, Jun 2026 (co-authored with Amit Maraj)</p>
+    <p class="extra-line"><span class="extra-title">Automating Gap-Night Revenue and Pool Heater Ops with n8n</span> - Personal blog, Jun 2026</p>
+    <p class="extra-line"><span class="extra-title">Company logo upload for job creation form</span> - codu-code/codu PR #1283 merged, Oct 2025 (Next.js, React, AWS S3, Zod, TypeScript)</p>
+  </main>
+
+  <script>
+    document.getElementById("download-pdf").addEventListener("click", function () {
+      window.print();
+    });
+  </script>
+</body>
+</html>

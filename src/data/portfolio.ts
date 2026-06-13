@@ -4,6 +4,7 @@ export const siteConfig = {
   description:
     "AI engineer building production-grade multi-agent systems and RAG pipelines on GCP. Based in Dublin, Ireland.",
   url: "https://sahejmaharjan.com.np",
+  cvUrl: "/sahej-cv.html",
   email: "sahejmaharjan@gmail.com",
   avatar: "/sahej-avatar.jpg",
   location: "Dublin, Ireland",
@@ -89,21 +90,13 @@ export const workExperiences = [
   },
   {
     title: "Lead Front-end Engineer / Full Stack Engineer",
-    company: "Shopswap & Indigo AI",
-    companyLinks: [
-      {
-        label: "Shopswap",
-        url: "https://www.linkedin.com/company/shopswap/about/",
-      },
-      {
-        label: "Indigo AI",
-        url: "https://www.linkedin.com/company/getindigoai/posts/?feedView=all",
-      },
-    ],
-    period: "Aug 2022 → Sep 2025",
+    company: "Indigo AI",
+    companyUrl:
+      "https://www.linkedin.com/company/getindigoai/posts/?feedView=all",
+    period: "Oct 29, 2024 → Sep 2025",
     location: "Remote",
     description:
-      "Led front-end engineering across two product teams — Shopswap and Indigo AI. Owned full-stack feature delivery, architecture decisions, and production releases for React and Next.js applications serving live users. Maker on Indigo's Product Hunt launch — ranked #2 Product of the Day on launch day.",
+      "Continued as lead front-end engineer after Shopswap was acquired by Indigo AI. Owned full-stack feature delivery, architecture decisions, and production releases for React and Next.js applications serving live users. Maker on Indigo's Product Hunt launch — ranked #2 Product of the Day on launch day.",
     tags: [
       "React",
       "Next.js",
@@ -123,6 +116,17 @@ export const workExperiences = [
       url: "https://www.producthunt.com/products/indigo",
       role: "Maker",
     },
+  },
+  {
+    title: "Lead Front-end Engineer / Full Stack Engineer",
+    company: "Shopswap",
+    companyUrl: "https://www.linkedin.com/company/shopswap/about/",
+    period: "Aug 2022 → Oct 29, 2024",
+    location: "Remote",
+    description:
+      "Led front-end engineering for Shopswap, a toolkit for brand partnerships, giveaways, and discount sharing. Owned full-stack feature delivery, architecture decisions, and production releases for React and Next.js applications until Shopswap was acquired by Indigo AI.",
+    tags: ["React", "Next.js", "React Native", "AWS", "Node.js", "Full Stack"],
+    highlighted: false,
   },
   {
     title: "Full Stack Engineer",

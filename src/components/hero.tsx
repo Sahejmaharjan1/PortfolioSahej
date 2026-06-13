@@ -2,6 +2,7 @@ import Image from "next/image";
 import {
   IconBrandPython,
   IconBuilding,
+  IconDownload,
   IconMail,
   IconMapPin,
   IconPencil,
@@ -61,6 +62,13 @@ export function Hero() {
           >
             <IconMail size={16} aria-hidden="true" />
             Get in touch
+          </a>
+          <a
+            href={siteConfig.cvUrl}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-border-2 bg-transparent px-[22px] py-[11px] text-sm text-muted no-underline transition-all hover:border-white/30 hover:text-text"
+          >
+            <IconDownload size={16} aria-hidden="true" />
+            Download CV
           </a>
           <a
             href="https://blog.dvx.ventures/author/sahej-maharjan-ed67"

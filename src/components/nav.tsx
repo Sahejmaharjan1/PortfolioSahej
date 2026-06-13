@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { navLinks } from "@/data/portfolio";
+import { SectionLink } from "@/components/section-link";
 
 export function Nav() {
   return (
@@ -10,6 +11,7 @@ export function Nav() {
       <div className="mx-auto flex max-w-[920px] items-center justify-between px-7 py-5">
         <Link
           href="/"
+          scroll
           className="font-mono text-sm font-medium tracking-[0.06em] text-muted no-underline"
         >
           <span className="text-accent-2">~/</span>sahej
@@ -30,16 +32,16 @@ export function Nav() {
 
             if (link.href.startsWith("/")) {
               return (
-                <Link key={link.href} href={link.href} className={className}>
+                <Link key={link.href} href={link.href} scroll className={className}>
                   {link.label}
                 </Link>
               );
             }
 
             return (
-              <a key={link.href} href={link.href} className={className}>
+              <SectionLink key={link.href} href={link.href} className={className}>
                 {link.label}
-              </a>
+              </SectionLink>
             );
           })}
         </div>

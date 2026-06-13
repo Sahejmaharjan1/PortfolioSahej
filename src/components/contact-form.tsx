@@ -119,26 +119,28 @@ export function ContactForm() {
         aria-hidden="true"
       />
 
-      <button
-        type="submit"
-        disabled={status === "sending" || status === "success"}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-accent/40 bg-accent/15 px-5 py-3 text-[14px] font-medium text-text transition-all hover:border-accent/60 hover:bg-accent/25 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
-      >
-        <IconSend size={16} aria-hidden="true" />
-        {status === "sending" ? "Sending..." : "Send message"}
-      </button>
+      <div className="flex flex-col items-center">
+        <button
+          type="submit"
+          disabled={status === "sending" || status === "success"}
+          className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-accent/40 bg-accent/15 px-5 py-3 text-[14px] font-medium text-text transition-all hover:border-accent/60 hover:bg-accent/25 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+        >
+          <IconSend size={16} aria-hidden="true" />
+          {status === "sending" ? "Sending..." : "Send message"}
+        </button>
 
-      {status === "success" && (
-        <p className="mt-4 text-[13px] text-green" role="status">
-          Message sent — I&apos;ll get back to you soon.
-        </p>
-      )}
+        {status === "success" && (
+          <p className="mt-4 text-[13px] text-green" role="status">
+            Message sent — I&apos;ll get back to you soon.
+          </p>
+        )}
 
-      {status === "error" && (
-        <p className="mt-4 text-[13px] text-amber" role="alert">
-          {errorMessage}
-        </p>
-      )}
+        {status === "error" && (
+          <p className="mt-4 text-[13px] text-amber" role="alert">
+            {errorMessage}
+          </p>
+        )}
+      </div>
     </form>
   );
 }

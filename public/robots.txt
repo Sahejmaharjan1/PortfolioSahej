@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Disallow: /sahej-cv-ats.html
+Disallow: /sahej-cv-ats.docx
