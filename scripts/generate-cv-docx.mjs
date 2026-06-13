@@ -84,7 +84,7 @@ const doc = new Document({
         ),
         ...jobBlock(
           "Lead Frontend Engineer / Full Stack Engineer",
-          "Indigo AI | Remote | Oct 29, 2024 - Sep 2025",
+          "Indigo AI | Remote | Oct 2024 - Sep 2025",
           [
             "Continued as lead after Shopswap acquisition; owned React/Next.js architecture and production releases.",
             "Maker on Indigo Product Hunt launch, ranked #2 Product of the Day.",
@@ -92,7 +92,7 @@ const doc = new Document({
         ),
         ...jobBlock(
           "Lead Frontend Engineer / Full Stack Engineer",
-          "Shopswap | Remote | Aug 2022 - Oct 29, 2024",
+          "Shopswap | Remote | Aug 2022 - Oct 2024",
           [
             "Led frontend for brand partnership toolkit; owned architecture, coding standards, and production delivery.",
             "Full-stack feature delivery on React/Next.js until acquisition by Indigo AI.",

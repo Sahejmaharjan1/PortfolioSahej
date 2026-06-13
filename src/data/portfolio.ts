@@ -71,7 +71,7 @@ export const workExperiences = [
   {
     title: "AI Engineer",
     company: "Tactix AI · DVx Ventures",
-    period: "2025 → present",
+    period: "Jan 2025 → present",
     location: "Remote (Los Angeles, CA)",
     description:
       "Building a multi-agent AI platform for restaurant operators. Architecting RAG pipelines over BigQuery with dbt-transformed data models. Designing access control systems that scope every agent call to what the authenticated user is allowed to see. Deploying containerised agents to GCP Cloud Run with Google ADK as the orchestration layer. Co-authoring a public engineering blog series on the systems behind Tactix.",
@@ -93,7 +93,7 @@ export const workExperiences = [
     company: "Indigo AI",
     companyUrl:
       "https://www.linkedin.com/company/getindigoai/posts/?feedView=all",
-    period: "Oct 29, 2024 → Sep 2025",
+    period: "Oct 2024 → Sep 2025",
     location: "Remote",
     description:
       "Continued as lead front-end engineer after Shopswap was acquired by Indigo AI. Owned full-stack feature delivery, architecture decisions, and production releases for React and Next.js applications serving live users. Maker on Indigo's Product Hunt launch — ranked #2 Product of the Day on launch day.",
@@ -121,7 +121,7 @@ export const workExperiences = [
     title: "Lead Front-end Engineer / Full Stack Engineer",
     company: "Shopswap",
     companyUrl: "https://www.linkedin.com/company/shopswap/about/",
-    period: "Aug 2022 → Oct 29, 2024",
+    period: "Aug 2022 → Oct 2024",
     location: "Remote",
     description:
       "Led front-end engineering for Shopswap, a toolkit for brand partnerships, giveaways, and discount sharing. Owned full-stack feature delivery, architecture decisions, and production releases for React and Next.js applications until Shopswap was acquired by Indigo AI.",
