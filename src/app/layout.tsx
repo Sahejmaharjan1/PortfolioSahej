@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { VisitTracker } from "@/components/visit-tracker";
 import { siteConfig } from "@/data/portfolio";
 import "./globals.css";
 
@@ -56,6 +57,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
         {children}
+        <VisitTracker />
         <Analytics />
       </body>
     </html>
