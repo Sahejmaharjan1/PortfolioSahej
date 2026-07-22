@@ -1,4 +1,4 @@
-import { cloudPlatforms, skillGroups } from "@/data/portfolio";
+import { skillGroups } from "@/data/portfolio";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 function SkillCard({
@@ -38,35 +38,6 @@ export function Skills() {
             </div>
           </div>
         ))}
-
-        <div>
-          <h3 className="mb-3 font-mono text-[10px] tracking-[0.12em] text-muted uppercase">
-            Cloud Platforms
-          </h3>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {cloudPlatforms.map((platform) => (
-              <div
-                key={platform.name}
-                className="rounded-[10px] border border-border bg-bg-2 px-4 py-4 transition-[border-color,transform] hover:-translate-y-0.5 hover:border-accent/45"
-              >
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="text-[17px] leading-none">☁️</span>
-                  <span className="text-[13px] font-medium">{platform.name}</span>
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {platform.services.map((service) => (
-                    <span
-                      key={service}
-                      className="rounded bg-white/[0.04] px-2 py-0.5 font-mono text-[10px] text-muted-2"
-                    >
-                      {service}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

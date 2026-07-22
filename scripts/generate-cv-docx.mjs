@@ -122,25 +122,28 @@ const doc = new Document({
 
         sectionHeading("Skills"),
         paragraph(
-          "AI/Backend: Google ADK, RAG, MCP, n8n, Python, FastAPI, Node.js, NestJS, multi-agent systems"
+          "Core (could teach it): TypeScript, Next.js/React, React Native, Electron"
         ),
         paragraph(
-          "Frontend: JavaScript, TypeScript, React, React Native, Next.js, Electron, Tailwind CSS, Redux, React Query"
+          "Proficient (used in production): Google ADK, FastAPI, n8n, AWS Lambda, ECS, S3, DynamoDB, GCP Cloud Run, BigQuery, Supabase, MCP tools, Docker, Postgres, Node.js/NestJS, Cognito, Route 53, Secrets Manager, SQS, SNS, EventBridge, AppSync, Amplify, CloudWatch, IAM, MongoDB"
         ),
         paragraph(
-          "Data/DevOps: Supabase, PostgreSQL, MongoDB, dbt, Docker, Serverless Framework"
-        ),
-        paragraph(
-          "Cloud: GCP (Cloud Run, BigQuery, Firestore), AWS (Lambda, ECS, S3, DynamoDB, Cognito, AppSync, Amplify, CloudFront)",
+          "Familiar (learning or light use): Sentry, LaunchDarkly, Terraform",
           { after: 80 }
         ),
 
         sectionHeading("Publications and Open Source"),
         paragraph(
-          "Rebuilding our Access Control for AI Agents - DVx Blog, Jun 2026 (co-authored with Amit Maraj)"
+          "We stopped treating agent latency as one number - DVx Blog, Jul 2026 (co-authored with Amit Maraj) - blog.dvx.ventures/we-stopped-treating-agent-latency-as-one-number"
+        ),
+        paragraph(
+          "The agent doesn't hold the data. It decides where to go get it. - DVx Blog, Jun 2026 (co-authored with Amit Maraj) - blog.dvx.ventures/the-agent-doesnt-hold-the-data"
         ),
         paragraph(
           "Automating Gap-Night Revenue and Pool Heater Ops with n8n - Personal blog, Jun 2026"
+        ),
+        paragraph(
+          "Rebuilding our Access Control for AI Agents - DVx Blog, Jun 2026 (co-authored with Amit Maraj) - blog.dvx.ventures/access-control-for-ai-agents"
         ),
         paragraph(
           "Company logo upload for job creation form - codu-code/codu PR #1283 merged, Oct 2025 (Next.js, React, AWS S3, Zod, TypeScript)"

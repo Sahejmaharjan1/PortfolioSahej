@@ -26,7 +26,7 @@ export const stats = [
   { value: "3", label: "AI systems live", color: "accent2" },
   { value: "#2", label: "Product Hunt", color: "amber" },
   { value: "∞", label: "agent calls/day", color: "green" },
-  { value: "1", label: "co-authored posts", color: "amber" },
+  { value: "3", label: "co-authored posts", color: "amber" },
   { value: "1", label: "merged OSS PR", color: "green" },
 ] as const;
 
@@ -54,7 +54,8 @@ export const terminalProfile = [
   },
   {
     key: "published",
-    value: '["Access Control for AI Agents — DVx Blog"]',
+    value:
+      '["Agent latency is not one number", "The agent doesn\'t hold the data", "Access Control for AI Agents — DVx Blog"]',
   },
   {
     key: "opensource",
@@ -182,83 +183,98 @@ export const openSourceContribution = {
   },
 } as const;
 
-export const blogPost = {
-  href: "https://blog.dvx.ventures/access-control-for-ai-agents",
-  tag: "Engineering · DVx Blog",
-  date: "Jun 03, 2026 · 12 min",
-  title: "Rebuilding our Access Control for AI Agents",
-  description:
-    "The data model that lets an AI agent pull naturally from your data without ever seeing a store it shouldn't. Covers hybrid RBAC/ACL design, single-function Postgres auth, and why BigQuery should never hold a grant.",
-  coAuthors: "Sahej Maharjan & Amit Maraj",
-  coAuthorInitials: "AM",
-} as const;
+export const blogPosts = [
+  {
+    href: "https://blog.dvx.ventures/we-stopped-treating-agent-latency-as-one-number",
+    tag: "Engineering · DVx Blog",
+    date: "Jul 14, 2026 · 9 min",
+    publishedDate: "2026-07-14",
+    title: "We stopped treating agent latency as one number.",
+    description:
+      "How we sped up Tactix Co-Pilot across the data path, tool layer, and reasoning loop — then added phase timing so we know which system owns the wait.",
+    coAuthors: "Sahej Maharjan & Amit Maraj",
+    coAuthorInitials: "AM",
+  },
+  {
+    href: "https://blog.dvx.ventures/the-agent-doesnt-hold-the-data",
+    tag: "Engineering · DVx Blog",
+    date: "Jun 18, 2026 · 11 min",
+    publishedDate: "2026-06-18",
+    title: "The agent doesn't hold the data. It decides where to go get it.",
+    description:
+      "How we built a conversational analyst that fetches from gold marts over MCP — routing live across tools instead of holding the warehouse in context.",
+    coAuthors: "Sahej Maharjan & Amit Maraj",
+    coAuthorInitials: "AM",
+  },
+  {
+    href: "https://blog.dvx.ventures/access-control-for-ai-agents",
+    tag: "Engineering · DVx Blog",
+    date: "Jun 03, 2026 · 12 min",
+    publishedDate: "2026-06-03",
+    title: "Rebuilding our Access Control for AI Agents",
+    description:
+      "The data model that lets an AI agent pull naturally from your data without ever seeing a store it shouldn't. Covers hybrid RBAC/ACL design, single-function Postgres auth, and why BigQuery should never hold a grant.",
+    coAuthors: "Sahej Maharjan & Amit Maraj",
+    coAuthorInitials: "AM",
+  },
+] as const;
+
+export const blogPost = blogPosts.find(
+  (post) => post.href.includes("access-control-for-ai-agents"),
+)!;
+
+export function getDvxPostsByDate() {
+  return [...blogPosts].sort(
+    (a, b) =>
+      new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime(),
+  );
+}
 
 export const skillGroups = [
   {
-    title: "AI & Backend",
+    title: "Core — could teach it",
     skills: [
-      { icon: "🤖", name: "Google ADK", category: "Agent orchestration" },
-      { icon: "🔗", name: "RAG pipelines", category: "AI engineering" },
-      { icon: "🔌", name: "MCP tools", category: "Agent integrations" },
-      { icon: "⚡", name: "Cursor Skills", category: "Agent workflows" },
-      { icon: "🔄", name: "n8n", category: "Workflow automation" },
-      { icon: "🐍", name: "FastAPI", category: "Backend / APIs" },
-      { icon: "🪺", name: "NestJS", category: "Backend / APIs" },
-      { icon: "🌐", name: "Node.js", category: "Backend / JS" },
-    ],
-  },
-  {
-    title: "Frontend & Mobile",
-    skills: [
-      { icon: "⚛️", name: "React", category: "Frontend" },
-      { icon: "▲", name: "Next.js", category: "Frontend / SSR" },
+      { icon: "📘", name: "TypeScript", category: "Language" },
+      { icon: "▲", name: "Next.js / React", category: "Frontend / SSR" },
       { icon: "📱", name: "React Native", category: "Mobile" },
       { icon: "🖥️", name: "Electron", category: "Desktop" },
     ],
   },
   {
-    title: "Data & DevOps",
+    title: "Proficient — used in production",
     skills: [
+      { icon: "🤖", name: "Google ADK", category: "Agent orchestration" },
+      { icon: "🐍", name: "FastAPI", category: "Backend / APIs" },
+      { icon: "🔄", name: "n8n", category: "Workflow automation" },
+      { icon: "🔌", name: "MCP tools", category: "Agent integrations" },
+      { icon: "🪺", name: "Node.js / NestJS", category: "Backend / JS" },
+      { icon: "🐘", name: "Postgres", category: "Database" },
       { icon: "🍃", name: "MongoDB", category: "Database" },
-      { icon: "🐘", name: "Supabase / Postgres", category: "Auth + database" },
-      { icon: "🔧", name: "dbt", category: "Data transformation" },
+      { icon: "🟢", name: "Supabase", category: "Auth + database" },
       { icon: "📦", name: "Docker", category: "Containerisation" },
-    ],
-  },
-] as const;
-
-export const cloudPlatforms = [
-  {
-    name: "AWS",
-    services: [
-      "Lambda",
-      "ECS",
-      "Fargate",
-      "S3",
-      "DynamoDB",
-      "CloudFront",
-      "Route 53",
-      "IAM",
-      "Cognito",
-      "Secrets Manager",
-      "SQS",
-      "SNS",
-      "EventBridge",
-      "AppSync",
-      "Amplify",
-      "CloudWatch",
-      "Elastic Beanstalk",
+      { icon: "⚡", name: "AWS Lambda", category: "AWS" },
+      { icon: "📦", name: "ECS", category: "AWS" },
+      { icon: "🗄️", name: "S3", category: "AWS" },
+      { icon: "📊", name: "DynamoDB", category: "AWS" },
+      { icon: "🔐", name: "Cognito", category: "AWS" },
+      { icon: "🌐", name: "Route 53", category: "AWS" },
+      { icon: "🔑", name: "Secrets Manager", category: "AWS" },
+      { icon: "📨", name: "SQS / SNS", category: "AWS" },
+      { icon: "⏱️", name: "EventBridge", category: "AWS" },
+      { icon: "📡", name: "AppSync", category: "AWS" },
+      { icon: "🚀", name: "Amplify", category: "AWS" },
+      { icon: "📈", name: "CloudWatch", category: "AWS" },
+      { icon: "🛡️", name: "IAM", category: "AWS" },
+      { icon: "☁️", name: "GCP Cloud Run", category: "GCP" },
+      { icon: "📊", name: "BigQuery", category: "GCP" },
     ],
   },
   {
-    name: "GCP",
-    services: [
-      "Cloud Run",
-      "Cloud Storage",
-      "Firestore",
-      "Secret Manager",
-      "Artifact Registry",
-      "BigQuery",
+    title: "Familiar — learning or light use",
+    skills: [
+      { icon: "🐛", name: "Sentry", category: "Observability" },
+      { icon: "🚩", name: "LaunchDarkly", category: "Feature flags" },
+      { icon: "🏗️", name: "Terraform", category: "Infrastructure as code" },
     ],
   },
 ] as const;
