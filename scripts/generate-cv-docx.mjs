@@ -63,7 +63,7 @@ const doc = new Document({
           spacing: { after: 40 },
         }),
         paragraph(
-          "Dublin, Ireland | sahejmaharjan@gmail.com | sahejmaharjan.com.np | linkedin.com/in/sahej-maharjan-433a34105 | github.com/Sahejmaharjan1 | stackoverflow.com/users/13797926/sahej-maharjan",
+          "Dublin, Ireland | +3530899490837 | sahejmaharjan@gmail.com | sahejmaharjan.com.np | linkedin.com/in/sahej-maharjan-433a34105 | github.com/Sahejmaharjan1 | stackoverflow.com/users/13797926/sahej-maharjan",
           { after: 80 }
         ),
 
@@ -75,7 +75,7 @@ const doc = new Document({
         sectionHeading("Work Experience"),
         ...jobBlock(
           "AI Engineer",
-          "Tactix AI (via DVx Ventures) | Remote | Jan 2025 - Present",
+          "Tactix AI (via DVx Ventures) | Remote | Jan 2026 - Present",
           [
             "Building multi-agent AI platform on GCP Cloud Run with Google ADK; RAG pipelines over BigQuery with dbt models.",
             "Designing access control scoping every agent call to authenticated user permissions.",
