@@ -63,13 +63,13 @@ const doc = new Document({
           spacing: { after: 40 },
         }),
         paragraph(
-          "Dublin, Ireland | +3530899490837 | sahejmaharjan@gmail.com | sahejmaharjan.com.np | linkedin.com/in/sahej-maharjan-433a34105 | github.com/Sahejmaharjan1 | stackoverflow.com/users/13797926/sahej-maharjan",
+          "Dublin, Ireland | +353 89 949 0837 | sahejmaharjan@gmail.com | sahejmaharjan.com.np | linkedin.com/in/sahej-maharjan-433a34105 | github.com/Sahejmaharjan1 | stackoverflow.com/users/13797926/sahej-maharjan",
           { after: 80 }
         ),
 
         sectionHeading("Summary"),
         paragraph(
-          "AI engineer building multi-agent systems and RAG pipelines on GCP at Tactix AI. 5+ years across frontend leadership, full-stack delivery, and production AI. Co-author on DVx engineering blog, merged OSS contributor, Indigo Product Hunt #2 (maker)."
+          "Full-stack engineer with 5+ years shipping production React/Next.js and TypeScript front ends and Node.js/AWS back ends. Led front-end architecture and production releases through one company acquisition, and now builds multi-agent AI systems and RAG pipelines on GCP. Shipped a #2 Product Hunt launch as a maker and merged contributions into an open-source codebase. Holds an MSc in Big Data Management and Analytics (First Class Honours). Co-author of 3 engineering posts on the DVx Ventures blog."
         ),
 
         sectionHeading("Work Experience"),
@@ -77,58 +77,71 @@ const doc = new Document({
           "AI Engineer",
           "Tactix AI (via DVx Ventures) | Remote | Jan 2026 - Present",
           [
-            "Building multi-agent AI platform on GCP Cloud Run with Google ADK; RAG pipelines over BigQuery with dbt models.",
-            "Designing access control scoping every agent call to authenticated user permissions.",
-            "Co-authoring public engineering blog series on Tactix systems.",
+            "Building a multi-agent AI platform for restaurant operators, deploying containerised agents to GCP Cloud Run with Google ADK as the orchestration layer.",
+            "Architecting RAG pipelines over BigQuery on dbt-transformed data models that feed agent tool calls.",
+            "Designed a hybrid RBAC/ACL authorization system enforced through a single Postgres auth function, scoping every agent call to the authenticated user's permissions.",
           ]
         ),
         ...jobBlock(
-          "Lead Frontend Engineer / Full Stack Engineer",
+          "Lead Front-End / Full-Stack Engineer",
           "Indigo AI | Remote | Oct 2024 - Sep 2025",
           [
-            "Continued as lead after Shopswap acquisition; owned React/Next.js architecture and production releases.",
-            "Maker on Indigo Product Hunt launch, ranked #2 Product of the Day.",
+            "Continued as lead front-end engineer after Shopswap's acquisition by Indigo AI; owned architecture decisions, full-stack feature delivery, and production releases for live React/Next.js applications.",
+            "Shipped Indigo as a maker on Product Hunt, reaching #2 Product of the Day on launch day.",
+            "Partnered with design and backend engineers to scope, unblock, and ship cross-functional features end to end.",
           ]
         ),
         ...jobBlock(
-          "Lead Frontend Engineer / Full Stack Engineer",
+          "Lead Front-End / Full-Stack Engineer",
           "Shopswap | Remote | Aug 2022 - Oct 2024",
           [
-            "Led frontend for brand partnership toolkit; owned architecture, coding standards, and production delivery.",
-            "Full-stack feature delivery on React/Next.js until acquisition by Indigo AI.",
+            "Led front-end engineering for a brand-partnership, giveaway, and discount-sharing toolkit; set frontend architecture and coding standards.",
+            "Delivered production features across React and Next.js applications through to acquisition by Indigo AI.",
           ]
         ),
         ...jobBlock(
-          "Full Stack Engineer / Frontend Team Lead",
-          "Preparie Inc. | Remote | Sep 2021 - Aug 2022",
-          ["Led frontend team operations, scheduling, documentation, and delivery across the Preparie platform."]
+          "Full-Stack Engineer",
+          "Preparie Inc. | Canada, Remote | Sep 2021 - Aug 2022",
+          [
+            "Built full-stack features across the Preparie platform using React, Next.js, and Node.js.",
+            "Served as front-end team lead, managing scheduling, coverage, documentation, and delivery.",
+          ]
         ),
         ...jobBlock(
-          "React / React Native / Next.js Developer",
-          "Bottle Technology | Nepal | Sep 2020 - Dec 2021",
+          "Frontend and Mobile Software Engineer",
+          "Bottle Technology | Jhamsikhel, Nepal | Sep 2020 - Dec 2021",
           [
-            "Frontend and mobile development; wrote 200+ JavaScript components; mentored a new frontend developer.",
+            "Built 200+ JavaScript components for client web and mobile projects; onboarded and mentored a junior front-end developer.",
           ]
         ),
 
         sectionHeading("Education"),
         paragraph(
-          "Griffith College Dublin - MSc Big Data Management and Analytics | Sep 2025 - 2026"
+          "Griffith College Dublin - MSc, Big Data Management and Analytics, First Class Honours | Dublin, Ireland | 2025 - 2026"
         ),
         paragraph(
-          "Deerwalk Institute of Technology - BSc Computer Science and Technology | 2017 - 2021",
+          "Deerwalk Institute of Technology - BSc, Computer Science and Technology | Kathmandu, Nepal | 2017 - 2021",
           { after: 80 }
         ),
 
         sectionHeading("Skills"),
         paragraph(
-          "Core (could teach it): TypeScript, Next.js/React, React Native, Electron"
+          "Frontend: TypeScript, JavaScript, React, Next.js, React Native, Vite, Electron"
         ),
         paragraph(
-          "Proficient (used in production): Google ADK, FastAPI, n8n, AWS Lambda, ECS, S3, DynamoDB, GCP Cloud Run, BigQuery, Supabase, MCP tools, Docker, Postgres, Node.js/NestJS, Cognito, Route 53, Secrets Manager, SQS, SNS, EventBridge, AppSync, Amplify, CloudWatch, IAM, MongoDB"
+          "Backend and APIs: Node.js, NestJS, Python (FastAPI), REST, GraphQL (AppSync), MCP tools"
         ),
         paragraph(
-          "Familiar (learning or light use): Sentry, LaunchDarkly, Terraform",
+          "Cloud and DevOps: AWS (Lambda, ECS, S3, DynamoDB, Cognito, SQS/SNS, EventBridge, AppSync, Amplify, CloudWatch, IAM, Route 53, Secrets Manager), GCP (Cloud Run, BigQuery), Docker, Terraform, CI/CD"
+        ),
+        paragraph(
+          "Databases and Data: SQL, PostgreSQL, MySQL, SQL Server, MongoDB, DynamoDB, Supabase (RLS), BigQuery, dbt"
+        ),
+        paragraph(
+          "AI and Automation: LLMs, agentic AI, RAG pipelines, multi-agent systems, Google ADK, access control (RBAC/ACL), n8n"
+        ),
+        paragraph(
+          "Tooling: Git, GitHub, Zod, Sentry, LaunchDarkly",
           { after: 80 }
         ),
 

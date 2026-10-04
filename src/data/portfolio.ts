@@ -2,14 +2,14 @@ export const siteConfig = {
   name: "Sahej Maharjan",
   title: "Sahej Maharjan — AI Engineer",
   description:
-    "AI engineer building production-grade multi-agent systems and RAG pipelines on GCP. Based in Dublin, Ireland.",
+    "Full-stack and AI engineer building multi-agent systems and RAG pipelines on GCP. MSc in Big Data Management & Analytics (First Class Honours). Based in Dublin, Ireland.",
   url: "https://sahejmaharjan.com.np",
   cvUrl: "/sahej-cv.html",
   email: "sahejmaharjan@gmail.com",
   avatar: "/sahej-avatar.jpg",
   location: "Dublin, Ireland",
   company: "Tactix AI · DVx Ventures",
-  techStack: "Python · React · GCP",
+  techStack: "React · Node.js · GCP",
 } as const;
 
 export const navLinks = [
@@ -18,6 +18,7 @@ export const navLinks = [
   { href: "/blog", label: "blog" },
   { href: "#opensource", label: "oss" },
   { href: "#skills", label: "skills" },
+  { href: "#education", label: "edu" },
   { href: "#contact", label: "contact" },
 ] as const;
 
@@ -25,7 +26,7 @@ export const stats = [
   { value: "5+", label: "years eng", color: "accent3" },
   { value: "3", label: "AI systems live", color: "accent2" },
   { value: "#2", label: "Product Hunt", color: "amber" },
-  { value: "∞", label: "agent calls/day", color: "green" },
+  { value: "1st", label: "class honours", color: "accent3" },
   { value: "3", label: "co-authored posts", color: "amber" },
   { value: "1", label: "merged OSS PR", color: "green" },
 ] as const;
@@ -34,6 +35,10 @@ export const terminalProfile = [
   { key: "name", value: '"Sahej Maharjan"' },
   { key: "location", value: '"Dublin, Ireland 🇮🇪"' },
   { key: "company", value: '"Tactix AI (via DVx Ventures)"' },
+  {
+    key: "education",
+    value: '"MSc Big Data · First Class Honours"',
+  },
   {
     key: "focus",
     value: '["multi-agent systems", "RAG", "data engineering"]',
@@ -75,7 +80,7 @@ export const workExperiences = [
     period: "Jan 2026 → present",
     location: "Remote (Los Angeles, CA)",
     description:
-      "Building a multi-agent AI platform for restaurant operators. Architecting RAG pipelines over BigQuery with dbt-transformed data models. Designing access control systems that scope every agent call to what the authenticated user is allowed to see. Deploying containerised agents to GCP Cloud Run with Google ADK as the orchestration layer. Co-authoring a public engineering blog series on the systems behind Tactix.",
+      "Building a multi-agent AI platform for restaurant operators, deploying containerised agents to GCP Cloud Run with Google ADK as the orchestration layer. Architecting RAG pipelines over BigQuery on dbt-transformed data models that feed agent tool calls. Designed a hybrid RBAC/ACL authorization system enforced through a single Postgres auth function, scoping every agent call to the authenticated user's permissions.",
     tags: [
       "Google ADK",
       "FastAPI",
@@ -84,20 +89,20 @@ export const workExperiences = [
       "dbt",
       "RAG",
       "Multi-agent",
-      "Supabase RLS",
+      "RBAC/ACL",
       "React",
     ],
     highlighted: true,
   },
   {
-    title: "Lead Front-end Engineer / Full Stack Engineer",
+    title: "Lead Front-End / Full-Stack Engineer",
     company: "Indigo AI",
     companyUrl:
       "https://www.linkedin.com/company/getindigoai/posts/?feedView=all",
     period: "Oct 2024 → Sep 2025",
     location: "Remote",
     description:
-      "Continued as lead front-end engineer after Shopswap was acquired by Indigo AI. Owned full-stack feature delivery, architecture decisions, and production releases for React and Next.js applications serving live users. Maker on Indigo's Product Hunt launch — ranked #2 Product of the Day on launch day.",
+      "Continued as lead front-end engineer after Shopswap's acquisition by Indigo AI. Owned architecture decisions, full-stack feature delivery, and production releases for live React and Next.js applications. Partnered with design and backend engineers to scope, unblock, and ship cross-functional features end to end. Maker on Indigo's Product Hunt launch — ranked #2 Product of the Day.",
     tags: [
       "React",
       "Next.js",
@@ -119,13 +124,13 @@ export const workExperiences = [
     },
   },
   {
-    title: "Lead Front-end Engineer / Full Stack Engineer",
+    title: "Lead Front-End / Full-Stack Engineer",
     company: "Shopswap",
     companyUrl: "https://www.linkedin.com/company/shopswap/about/",
     period: "Aug 2022 → Oct 2024",
     location: "Remote",
     description:
-      "Led front-end engineering for Shopswap, a toolkit for brand partnerships, giveaways, and discount sharing. Owned full-stack feature delivery, architecture decisions, and production releases for React and Next.js applications until Shopswap was acquired by Indigo AI.",
+      "Led front-end engineering for a brand-partnership, giveaway, and discount-sharing toolkit. Set frontend architecture and coding standards, and delivered production features across React and Next.js applications through to acquisition by Indigo AI.",
     tags: ["React", "Next.js", "React Native", "AWS", "Node.js", "Full Stack"],
     highlighted: false,
   },
@@ -136,17 +141,17 @@ export const workExperiences = [
     period: "Sep 2021 → Aug 2022",
     location: "Canada · Remote",
     description:
-      "Worked as front-end team lead. Oversaw day-to-day operations of the frontend development team — scheduling, coverage, documentation, and delivery across the Preparie platform.",
+      "Built full-stack features across the Preparie platform using React, Next.js, and Node.js. Served as front-end team lead, managing scheduling, coverage, documentation, and delivery.",
     tags: ["React", "Next.js", "Team Lead", "Node.js"],
     highlighted: false,
   },
   {
-    title: "React / React Native / Next.js Developer",
+    title: "Frontend & Mobile Software Engineer",
     company: "Bottle Technology",
     period: "Sep 2020 → Dec 2021",
     location: "Jhamsikhel, Nepal",
     description:
-      "Performed front-end and mobile development for all client projects. Wrote 200+ JavaScript components for client websites and mobile apps. On-boarded and mentored a new front-end developer through regular coaching sessions and work reviews.",
+      "Built 200+ JavaScript components for client web and mobile projects. Onboarded and mentored a junior front-end developer through coaching sessions and work reviews.",
     tags: ["React", "React Native", "Next.js", "JavaScript", "Mobile"],
     highlighted: false,
   },
@@ -230,6 +235,25 @@ export function getDvxPostsByDate() {
   );
 }
 
+export const education = [
+  {
+    degree: "MSc, Big Data Management & Analytics",
+    school: "Griffith College Dublin",
+    schoolUrl: "https://www.griffith.ie/",
+    period: "2025 → 2026",
+    location: "Dublin, Ireland",
+    honours: "First Class Honours",
+    highlighted: true,
+  },
+  {
+    degree: "BSc, Computer Science and Technology",
+    school: "Deerwalk Institute of Technology",
+    period: "2017 → 2021",
+    location: "Kathmandu, Nepal",
+    highlighted: false,
+  },
+] as const;
+
 export const skillGroups = [
   {
     title: "Core — could teach it",
@@ -238,17 +262,22 @@ export const skillGroups = [
       { icon: "▲", name: "Next.js / React", category: "Frontend / SSR" },
       { icon: "📱", name: "React Native", category: "Mobile" },
       { icon: "🖥️", name: "Electron", category: "Desktop" },
+      { icon: "⚙️", name: "Vite", category: "Frontend tooling" },
     ],
   },
   {
     title: "Proficient — used in production",
     skills: [
       { icon: "🤖", name: "Google ADK", category: "Agent orchestration" },
+      { icon: "🧠", name: "LLMs / RAG", category: "Agentic AI" },
       { icon: "🐍", name: "FastAPI", category: "Backend / APIs" },
+      { icon: "🔗", name: "GraphQL", category: "APIs" },
       { icon: "🔄", name: "n8n", category: "Workflow automation" },
       { icon: "🔌", name: "MCP tools", category: "Agent integrations" },
       { icon: "🪺", name: "Node.js / NestJS", category: "Backend / JS" },
       { icon: "🐘", name: "Postgres", category: "Database" },
+      { icon: "🧮", name: "SQL", category: "MySQL · SQL Server" },
+      { icon: "🧱", name: "dbt", category: "Data modeling" },
       { icon: "🍃", name: "MongoDB", category: "Database" },
       { icon: "🟢", name: "Supabase", category: "Auth + database" },
       { icon: "📦", name: "Docker", category: "Containerisation" },

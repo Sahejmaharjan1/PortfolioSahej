@@ -119,8 +119,9 @@ export default async function BlogPostPage({ params }: PageProps) {
             </p>
             <p className="mb-1 text-[15px] font-medium">{siteConfig.name}</p>
             <p className="text-[13px] leading-[1.65] text-muted-2">
-              AI Engineer at {siteConfig.company}. Building production-grade
-              multi-agent systems and automation on GCP.
+              AI Engineer at {siteConfig.company}. MSc in Big Data Management
+              & Analytics (First Class Honours). Building production-grade
+              multi-agent systems and RAG pipelines on GCP.
             </p>
             <a
               href={`mailto:${siteConfig.email}`}

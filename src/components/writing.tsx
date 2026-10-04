@@ -108,9 +108,8 @@ export function Writing() {
 
       <div className="mt-2.5 flex items-center gap-2 rounded-lg border border-accent-2/18 bg-accent-2/5 px-4 py-3 text-xs text-muted">
         <IconBooks size={14} aria-hidden="true" className="shrink-0 text-accent-2" />
-        Part of the Tactix engineering series — multi-agent architecture, data
-        flywheel, access control, Co-Pilot routing, and latency across the
-        request path.
+        Three co-authored posts on the DVx Ventures blog — agent latency, MCP
+        data routing, and access control for AI agents.
       </div>
     </section>
   );

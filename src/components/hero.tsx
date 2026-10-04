@@ -32,12 +32,13 @@ export function Hero() {
         </h1>
 
         <p className="mb-7 max-w-[520px] text-base leading-[1.75] text-muted-2">
-          Building production-grade{" "}
+          Full-stack engineer shipping production React and Node.js, now
+          building{" "}
           <em className="text-accent-2 not-italic">multi-agent systems</em> and{" "}
-          <em className="text-accent-2 not-italic">RAG pipelines</em> on GCP.
-          Currently shipping AI at{" "}
-          <em className="text-accent-2 not-italic">Tactix AI</em> — turning
-          messy restaurant data into intelligent operator tools.
+          <em className="text-accent-2 not-italic">RAG pipelines</em> on GCP at{" "}
+          <em className="text-accent-2 not-italic">Tactix AI</em>. MSc in Big
+          Data Management & Analytics,{" "}
+          <em className="text-accent-2 not-italic">First Class Honours</em>.
         </p>
 
         <div className="mb-8 flex flex-wrap items-center gap-5">
